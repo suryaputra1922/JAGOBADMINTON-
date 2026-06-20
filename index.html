@@ -13,13 +13,14 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
         }
         
-        /* Menggunakan tautan Google Photos sebagai background utama seluruh website */
+        /* Menggunakan file gambar lokal yang sudah Anda download ke dalam folder assets */
         body { 
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), 
-                        url('https://photos.app.goo.gl/oufMeLrbnTWcNUYe9') center/cover no-repeat fixed;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                        url('assets/background.jpg') center/cover no-repeat fixed;
+            background-color: #121212; /* Warna cadangan jika gambar belum di-download */
             color: #fff; 
             overflow-x: hidden; 
-            padding-bottom: 90px; /* Jarak bawah agar teks penjelasan tidak tertutup oleh player audio */
+            padding-bottom: 100px; 
             min-height: 100vh;
         }
 
@@ -34,7 +35,6 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(5px);
         }
         .logo { 
             font-size: 24px; 
@@ -49,17 +49,18 @@
             font-weight: 500; 
             transition: 0.3s; 
             cursor: pointer;
+            padding: 5px 10px;
         }
         nav a:hover, nav a.active { 
             color: #ffcc00; 
         }
 
-        /* --- SISTEM NAVIGASI HALAMAN INTERAL --- */
+        /* --- SISTEM NAVIGASI HALAMAN (SPA) --- */
         .page {
             display: none; 
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.4s ease-in-out;
+            transform: translateY(15px);
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
             padding: 40px 20px;
         }
         .page.active-page {
@@ -70,32 +71,31 @@
 
         /* --- STYLE HALAMAN 1: BERANDA --- */
         .hero { 
-            height: 60vh; 
+            height: 55vh; 
             display: flex; 
             flex-direction: column; 
             justify-content: center; 
             align-items: center; 
             text-align: center; 
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.5);
             border: 2px dashed #ffcc00;
             border-radius: 10px;
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            backdrop-filter: blur(3px);
         }
         .hero h1 { 
             font-size: 45px; 
             margin-bottom: 20px; 
             color: #ffcc00;
-            animation: fadeInDown 1.2s ease; 
+            animation: fadeInDown 1s ease; 
         }
         .hero p { 
             font-size: 18px; 
             color: #ccc; 
             margin-bottom: 30px; 
             max-width: 600px;
-            animation: fadeInUp 1.2s ease; 
+            animation: fadeInUp 1s ease; 
         }
         
         /* Menu Grid Navigasi di Beranda */
@@ -109,6 +109,7 @@
 
         /* --- BUTTONS --- */
         .btn { 
+            display: inline-block;
             padding: 15px 20px; 
             background: #ffcc00; 
             color: #121212; 
@@ -119,6 +120,7 @@
             cursor: pointer;
             border: none;
             box-shadow: 0 4px 10px rgba(255, 204, 0, 0.2);
+            font-size: 16px;
         }
         .btn:hover { 
             background: #fff; 
@@ -130,16 +132,15 @@
             animation: pulse 2s infinite;
         }
 
-        /* --- TAMPILAN KOTAK PENJELASAN TEKNIK (HALAMAN 2, 3, 4, 5) --- */
+        /* --- TAMPILAN KOTAK PENJELASAN TEKNIK --- */
         .container { 
             max-width: 900px; 
             margin: 0 auto; 
             padding: 35px; 
-            background: rgba(25, 25, 25, 0.9); /* Lapisan gelap tebal agar teks penjelasan kontras dan terbaca */
+            background: rgba(20, 20, 20, 0.93); /* Gelap pekat agar tulisan kontras di depan gambar background */
             border-radius: 10px; 
-            box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.8);
             border-left: 6px solid #ffcc00;
-            backdrop-filter: blur(8px);
         }
         .container h1 { 
             color: #ffcc00; 
@@ -204,14 +205,10 @@
             margin-top: 30px; 
         }
         .card { 
-            background: rgba(42, 42, 42, 0.95); 
+            background: rgba(35, 35, 35, 0.95); 
             padding: 20px; 
             border-radius: 8px; 
             border-top: 4px solid #ffcc00; 
-            transition: transform 0.3s; 
-        }
-        .card:hover { 
-            transform: translateY(-5px); 
         }
         .card video {
             margin-top: 15px;
@@ -235,37 +232,24 @@
         }
 
         /* --- KEYFRAMES ANIMASI CSS --- */
-        @keyframes bounce { 
-            0%, 100% { transform: translateY(0); } 
-            50% { transform: translateY(-5px); } 
-        }
-        @keyframes fadeInDown { 
-            from { opacity: 0; transform: translateY(-30px); } 
-            to { opacity: 1; transform: translateY(0); } 
-        }
-        @keyframes fadeInUp { 
-            from { opacity: 0; transform: translateY(30px); } 
-            to { opacity: 1; transform: translateY(0); } 
-        }
-        @keyframes pulse { 
-            0% { transform: scale(1); } 
-            50% { transform: scale(1.03); } 
-            100% { transform: scale(1); } 
-        }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
 
         /* Optimasi Tampilan Layar HP */
         @media (max-width: 768px) {
             .menu-grid { grid-template-columns: 1fr; padding: 0 20px; }
             .grid-layout { grid-template-columns: 1fr; }
             header { flex-direction: column; gap: 15px; text-align: center; }
-            nav a { margin: 0 8px; font-size: 14px; }
+            nav a { margin: 5px 8px; font-size: 14px; }
             .hero h1 { font-size: 32px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVIGASI UTAMA -->
+    <!-- NAVIGASI UTAMA (Atas) -->
     <header>
         <div class="logo">🏸 Jago Badminton</div>
         <nav>
@@ -285,7 +269,7 @@
             <button class="btn btn-large" onclick="switchPage('servis')">Mulai Belajar Berurutan</button>
         </section>
 
-        <!-- Menu Pintasan ke Penjelasan Teknik -->
+        <!-- Menu Pintasan Utama di Beranda -->
         <div class="menu-grid">
             <button class="btn" onclick="switchPage('servis')">1. Teknik Servis</button>
             <button class="btn" onclick="switchPage('lob')">2. Pukulan Lob</button>
@@ -298,4 +282,9 @@
     <div id="servis" class="page">
         <div class="container">
             <h1>1. Teknik Dasar Servis</h1>
+            <p>Servis adalah pukulan pertama yang menandai dimulainya permainan. Melakukan servis dengan teknik yang benar sangat krusial agar pihak lawan tidak bisa langsung melakukan serangan.</p>
             
+            <h2>A. Servis Pendek (Short Serve)</h2>
+            <p>Sering digunakan pada permainan sektor ganda. Tujuannya adalah mengarahkan kok jatuh setipis mungkin di dekat garis depan pertahanan lawan.</p>
+            <ul class="step-list">
+    
