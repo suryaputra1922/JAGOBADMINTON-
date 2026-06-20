@@ -3,245 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JADOBADMINTON - Teknik Dasar</title>
+    <title>JADOBADMINTON - 5 Slide Presentation</title>
     <style>
-        /* Gaya Dasar & Reset */
+        /* 1. CSS DASAR & RESET */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', sans-serif;
         }
 
         body {
-            background-color: #f4f7f6;
-            color: #333;
-            line-height: 1.6;
+            overflow: hidden; /* Menghilangkan scrollbar */
+            background-color: #111;
+            color: white;
         }
 
-        /* Animasi Transisi untuk Efek Hover */
-        header, .card, .video-container {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        /* 2. CONTAINER SLIDER */
+        .slider-container {
+            display: flex;
+            width: 500vw; /* 5 slide = 500% lebar */
+            height: 100vh;
+            transition: transform 0.8s cubic-bezier(0.7, 0, 0.3, 1);
         }
 
-        /* --- ANIMASI UTAMA (Keyframes) --- */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        /* Header dengan Animasi Muncul */
-        header {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            color: #fff;
-            text-align: center;
-            padding: 40px 20px;
-            animation: fadeInDown 1s ease-out;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-
-        header p {
-            font-style: italic;
-            opacity: 0.9;
-        }
-
-        /* Wadah Konten Utama */
-        .container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-
-        /* Desain Audio Player */
-        .audio-section {
-            background: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        .slide {
+            width: 100vw;
+            height: 100vh;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
-            gap: 10px;
-        }
-
-        /* Desain Gambar Utama dengan Efek Animasi Denyut (Pulse) */
-        .image-banner {
-            width: 100%;
-            max-height: 350px;
-            object-fit: cover;
-            border-radius: 12px;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-            margin-bottom: 30px;
-            animation: pulse 4s infinite ease-in-out;
-        }
-
-        /* Bagian Teknik Dasar (Grid/Cards) */
-        .grid-teknik {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .card {
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-            border-left: 5px solid #2a5298;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-        }
-
-        .card h3 {
-            color: #1e3c72;
-            margin-bottom: 10px;
-        }
-
-        /* Bagian Video Tradisional (Local File) */
-        .video-section {
-            background: #fff;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            margin-bottom: 40px;
-        }
-
-        .video-section h2 {
-            color: #1e3c72;
-            margin-bottom: 15px;
             text-align: center;
-        }
-
-        .video-container {
             position: relative;
-            width: 100%;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            padding: 20px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
-        video {
-            width: 100%;
-            display: block;
+        /* Overlay gelap agar teks terbaca */
+        .slide::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
         }
 
-        /* Tombol Link YouTube */
-        .btn-youtube {
-            display: inline-block;
-            background-color: #ff0000;
-            color: #ffffff;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: bold;
-            margin-top: 15px;
-            transition: background-color 0.3s ease;
+        .content {
+            position: relative;
+            z-index: 2;
         }
 
-        .btn-youtube:hover {
-            background-color: #cc0000;
+        /* 3. ANIMASI TEKS */
+        .content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 1s all ease;
         }
 
-        /* Footer */
-        footer {
+        .content p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 1s all ease 0.3s;
+        }
+
+        /* Gambar di dalam konten */
+        .content img {
+            width: 300px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            opacity: 0;
+            transform: scale(0.8);
+            transition: 1s all ease;
+        }
+
+        /* Class aktif untuk memicu animasi */
+        .active .content h1, 
+        .active .content p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .active .content img {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* 4. NAVIGASI TOMBOL */
+        .nav-buttons {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            gap: 20px;
+        }
+
+        button {
+            padding: 15px 25px;
+            border: none;
+            background: #2a5298;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+
+        button:hover {
             background: #1e3c72;
-            color: #fff;
-            text-align: center;
-            padding: 15px;
-            margin-top: 50px;
-            font-size: 0.9rem;
+            transform: scale(1.1);
         }
+
+        /* Kontrol Audio */
+        .audio-ctrl {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+        }
+
+        /* Slide Colors (Sebagai cadangan jika gambar tidak ada) */
+        #slide1 { background-image: url('gambar1.jpg'); background-color: #1a2a6c; }
+        #slide2 { background-image: url('gambar2.jpg'); background-color: #b21f1f; }
+        #slide3 { background-image: url('gambar3.jpg'); background-color: #fdbb2d; }
+        #slide4 { background-image: url('gambar4.jpg'); background-color: #22c1c3; }
+        #slide5 { background-image: url('gambar5.jpg'); background-color: #833ab4; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>JADOBADMINTON</h1>
-        <p>Kuasai Lapangan dengan Teknik yang Benar</p>
-    </header>
+    <div class="audio-ctrl">
+        <button onclick="toggleAudio()" id="btnAudio">🎵 Putar Musik</button>
+        <audio id="bgMusic" loop>
+            <source src="musik.mp3" type="audio/mpeg">
+        </audio>
+    </div>
 
-    <div class="container">
-
-        <img src="raket.jpg" alt="Ilustrasi Badminton" class="image-banner">
-
-        <div class="audio-section">
-            <p><strong>Dengarkan Panduan Audio Singkat:</strong></p>
-            <audio controls>
-                <source src="bg-audio.mp3" type="audio/mpeg">
-                Browser kamu tidak mendukung pemutar audio.
-            </audio>
-        </div>
-
-        <h2 style="margin-bottom: 20px; color: #1e3c72; text-align: center;">4 Teknik Dasar Utama</h2>
+    <div class="slider-container" id="slider">
         
-        <div class="grid-teknik">
-            <div class="card">
-                <h3>1. Cara Memegang Raket (Grip)</h3>
-                <p>Teknik paling awal yang harus dikuasai. Terdiri dari <em>Forehand Grip</em> (seperti bersalaman) dan <em>Backhand Grip</em> (ibu jari bertumpu pada tangkai raket yang lebar).</p>
+        <section class="slide active" id="slide1">
+            <div class="content">
+                <img src="gambar1.jpg" alt="Badminton">
+                <h1>Selamat Datang</h1>
+                <p>JADOBADMINTON: Tempat Belajar Teknik Dasar Bulutangkis Secara Profesional.</p>
             </div>
+        </section>
 
-            <div class="card">
-                <h3>2. Sikap Berdiri (Footwork)</h3>
-                <p>Gerakan kaki yang lincah adalah kunci untuk mengejar shuttlecock ke segala sudut lapangan. Pastikan posisi tubuh selalu seimbang dan siap bergerak.</p>
+        <section class="slide" id="slide2">
+            <div class="content">
+                <img src="gambar2.jpg" alt="Grip">
+                <h1>Teknik Memegang Raket</h1>
+                <p>Kuasai Forehand dan Backhand grip untuk kontrol pukulan yang lebih akurat.</p>
             </div>
+        </section>
 
-            <div class="card">
-                <h3>3. Servis (Service)</h3>
-                <p>Pukulan awal untuk memulai pertandingan. Bisa dilakukan dengan teknik servis pendek (sering digunakan di ganda) atau servis tinggi/panjang (sering digunakan di tunggal).</p>
+        <section class="slide" id="slide3">
+            <div class="content">
+                <img src="gambar3.jpg" alt="Footwork">
+                <h1>Kelincahan Kaki (Footwork)</h1>
+                <p>Kunci permainan yang hebat adalah pergerakan kaki yang cepat untuk menjangkau setiap sudut lapangan.</p>
             </div>
+        </section>
 
-            <div class="card">
-                <h3>4. Pukulan (Strokes)</h3>
-                <p>Berbagai jenis pukulan utama seperti <em>Lob</em> (melambungkan ke belakang lawan), <em>Drop Shot</em> (menukik tipis di net), dan <em>Smash</em> (pukulan keras menukik tajam untuk mematikan lawan).</p>
+        <section class="slide" id="slide4">
+            <div class="content">
+                <img src="gambar4.jpg" alt="Smash">
+                <h1>Pukulan Smash</h1>
+                <p>Teknik serangan paling mematikan untuk mendapatkan poin secara instan.</p>
             </div>
-        </div>
+        </section>
 
-        <div class="video-section" style="text-align: center;">
-            <h2>Video Tutorial Teknik Dasar</h2>
-            
-            <div class="video-container">
-                <video controls poster="raket.jpg">
-                    <source src="video-teknik.mp4" type="video/mp4">
-                    Browser kamu tidak mendukung pemutar video lokal.
-                </video>
+        <section class="slide" id="slide5">
+            <div class="content">
+                <img src="gambar5.jpg" alt="Thank You">
+                <h1>Mulai Latihan Sekarang!</h1>
+                <p>Terima kasih telah berkunjung. Mari kita tingkatkan kemampuan di lapangan!</p>
             </div>
-            
-            <p style="margin-top: 15px; font-size: 0.9rem; color: #666;">
-                *Jika video di atas tidak dapat diputar, Anda juga dapat menyaksikan video materi lengkap "Teknik Dasar dan Peraturan Bulutangkis" langsung di YouTube:
-            </p>
-            
-            <a href="https://youtu.be/1oorTNK_qw4?si=ZDB5-AKxcTT1PS8a" target="_blank" class="btn-youtube">
-                Tonton di YouTube
-            </a>
-        </div>
+        </section>
 
     </div>
 
-    <footer>
-        <p>&copy; 2026 JADOBADMINTON. All Rights Reserved.</p>
-    </footer>
+    <div class="nav-buttons">
+        <button onclick="prevSlide()">⬅️ Kembali</button>
+        <button onclick="nextSlide()">Lanjut ➡️</button>
+    </div>
 
+    <script>
+        let currentIndex = 0;
+        const totalSlides = 5;
+        const slider = document.getElementById('slider');
+        const slides = document.querySelectorAll('.slide');
+        const bgMusic = document.getElementById('bgMusic');
+        const btnAudio = document.getElementById('btnAudio');
+
+        function updateSlider() {
+            slider.style.transform = `translateX(-${currentIndex * 100}vw)`;
+            
+            // Update class aktif untuk animasi teks
+            slides.forEach((slide, index) => {
+                if (index === currentIndex) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            if (currentIndex < totalSlides - 1) {
+                currentIndex++;
+                updateSlider();
+            } else {
+                currentIndex = 0; // Kembali ke awal jika sudah di slide terakhir
+                updateSlider();
+            }
+        }
+
+        function prevSlide() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateSlider();
+            }
+        }
+
+        // Fungsi Audio
+        function toggleAudio() {
+            if (bgMusic.paused) {
+                bgMusic.play();
+                btnAudio.innerText = "⏸️ Berhenti";
+            } else {
+                bgMusic.pause();
+                btnAudio.innerText = "🎵 Putar Musik";
+            }
+        }
+
+        // Support Navigasi Keyboard
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "ArrowRight") nextSlide();
+            if (e.key === "ArrowLeft") prevSlide();
+        });
+    </script>
 </body>
 </html>
