@@ -147,6 +147,23 @@
             display: block;
         }
 
+        /* Tombol Link YouTube */
+        .btn-youtube {
+            display: inline-block;
+            background-color: #ff0000;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-youtube:hover {
+            background-color: #cc0000;
+        }
+
         /* Footer */
         footer {
             background: #1e3c72;
@@ -201,17 +218,23 @@
             </div>
         </div>
 
-        <div class="video-section">
+        <div class="video-section" style="text-align: center;">
             <h2>Video Tutorial Teknik Dasar</h2>
+            
             <div class="video-container">
                 <video controls poster="raket.jpg">
                     <source src="video-teknik.mp4" type="video/mp4">
-                    Browser kamu tidak mendukung pemutar video.
+                    Browser kamu tidak mendukung pemutar video lokal.
                 </video>
             </div>
-            <p style="margin-top: 10px; font-size: 0.85rem; color: #666; text-align: center;">
-                *Klik tombol play pada pemutar video di atas untuk melihat visualisasi gerakan.
+            
+            <p style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+                *Jika video di atas tidak dapat diputar, Anda juga dapat menyaksikan video materi lengkap "Teknik Dasar dan Peraturan Bulutangkis" langsung di YouTube:
             </p>
+            
+            <a href="https://youtu.be/1oorTNK_qw4?si=ZDB5-AKxcTT1PS8a" target="_blank" class="btn-youtube">
+                Tonton di YouTube
+            </a>
         </div>
 
     </div>
