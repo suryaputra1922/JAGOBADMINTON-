@@ -3,296 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jago Badminton - 5 Slide Teknik Dasar</title>
+    <title>Jago Badminton</title>
     <style>
-        /* --- CSS GLOBAL & RESET --- */
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-        }
-        
-        /* Background bernuansa lapangan badminton dengan efek gelap agar teks terbaca jelas */
-        body { 
-            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
-                        url('https://unsplash.com') center/cover no-repeat fixed;
-            color: #fff; 
-            overflow-x: hidden; 
-            padding-bottom: 120px; 
-            min-height: 100vh;
+        /* Desain Dasar */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* --- NAVIGASI HEADER --- */
-        header { 
-            background: rgba(25, 25, 25, 0.95); 
-            padding: 20px; 
-            text-align: center;
-            border-bottom: 3px solid #ffcc00; 
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .logo { 
-            font-size: 24px; 
-            font-weight: bold; 
-            color: #ffcc00; 
-            animation: bounce 2s infinite; 
-            margin-bottom: 15px;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        nav button { 
-            background: none;
-            border: none;
-            color: #fff; 
-            font-weight: 500; 
-            font-size: 15px;
-            transition: 0.3s; 
-            cursor: pointer;
-            padding: 5px 10px;
-        }
-        nav button:hover, nav button.active { 
-            color: #ffcc00; 
-            border-bottom: 2px solid #ffcc00;
-        }
-
-        /* --- SISTEM NAVIGASI SLIDE (SPA) --- */
-        .slide {
-            display: none; 
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
-            padding: 40px 20px;
-        }
-        .slide.active-slide {
-            display: block; 
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- STYLE SLIDE 1: BERANDA --- */
-        .hero { 
-            height: 45vh; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            text-align: center; 
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px dashed #ffcc00;
-            border-radius: 10px;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            backdrop-filter: blur(5px);
-        }
-        .hero h1 { 
-            font-size: 40px; 
-            margin-bottom: 20px; 
-            color: #ffcc00;
-            animation: fadeInDown 1s ease; 
-        }
-        .hero p { 
-            font-size: 18px; 
-            color: #ccc; 
-            margin-bottom: 30px; 
-            max-width: 600px;
-            animation: fadeInUp 1s ease; 
-        }
-        
-        /* Grid Menu Utama di Beranda */
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            max-width: 1000px;
-            margin: 30px auto 0 auto;
-        }
-
-        /* --- TOMBOL / BUTTONS --- */
-        .btn { 
-            padding: 15px 20px; 
-            background: #ffcc00; 
-            color: #121212; 
-            font-weight: bold; 
-            text-align: center;
-            border-radius: 5px; 
-            transition: 0.3s; 
-            cursor: pointer;
-            border: none;
-            box-shadow: 0 4px 10px rgba(255, 204, 0, 0.2);
-            font-size: 16px;
-        }
-        .btn:hover { 
-            background: #fff; 
-            transform: scale(1.05);
-        }
-        .btn-large {
-            padding: 15px 40px;
-            font-size: 18px;
-            animation: pulse 2s infinite;
-        }
-        
-        /* Navigasi Bawah (Kembali & Lanjut) */
-        .slide-nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-            gap: 20px;
-        }
-        .btn-nav-prev {
-            background: #444;
+        /* Latar Belakang (Background) Estetik Berwarna Gelap & Blur */
+        body {
+            background: linear-gradient(rgba(15, 32, 39, 0.85), rgba(32, 58, 67, 0.85)), 
+                        url('https://unsplash.com') no-repeat center center fixed;
+            background-size: cover;
             color: #fff;
-        }
-        .btn-nav-prev:hover {
-            background: #666;
-        }
-
-        /* --- WADAH ISI PENJELASAN TEKNIK (SLIDE 2, 3, 4, 5) --- */
-        .container { 
-            max-width: 900px; 
-            margin: 0 auto; 
-            padding: 35px; 
-            background: rgba(20, 20, 20, 0.9); 
-            border-radius: 10px; 
-            box-shadow: 0 8px 25px rgba(0,0,0,0.7);
-            border-left: 6px solid #ffcc00;
-        }
-        .container h1 { 
-            color: #ffcc00; 
-            margin-bottom: 25px; 
-            font-size: 32px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 10px;
-        }
-        .container h2 {
-            color: #ffcc00;
-            margin: 25px 0 10px 0;
-            font-size: 22px;
-        }
-        .container p { 
-            line-height: 1.8; 
-            color: #eee; 
-            margin-bottom: 15px; 
-            font-size: 16px;
-        }
-        .step-list {
-            margin-left: 25px;
-            margin-bottom: 25px;
-            color: #ddd;
-            line-height: 1.8;
-        }
-        .step-list li {
-            margin-bottom: 10px;
-            list-style-type: square;
-        }
-        
-        /* Kotak Tempat Video File Lokal */
-        .video-box { 
-            text-align: center; 
-            margin: 35px 0; 
-            background: #000; 
-            padding: 20px; 
-            border-radius: 8px; 
-            border: 1px solid rgba(255, 204, 0, 0.3);
-        }
-        .video-box h3 {
-            margin-bottom: 15px;
-            color: #ffcc00;
-        }
-        video { 
-            width: 100%; 
-            max-width: 650px; 
-            border: 2px solid #ffcc00; 
-            border-radius: 5px;
-        }
-
-        /* Desain Khusus Slide 4: Smash (Aksen Merah) */
-        #slide-smash .container { border-left-color: #ff4444; }
-        #slide-smash h1, #slide-smash h2, #slide-smash h3, #slide-smash video { color: #ff4444; border-color: #ff4444; }
-        #slide-smash .btn-next-special { background: #ff4444; color: #fff; }
-        #slide-smash .btn-next-special:hover { background: #fff; color: #121212; }
-
-        /* Tampilan Berdampingan untuk Slide 5 */
-        .grid-layout { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 20px; 
-            margin-top: 30px; 
-        }
-        .card { 
-            background: rgba(35, 35, 35, 0.95); 
-            padding: 20px; 
-            border-radius: 8px; 
-            border-top: 4px solid #ffcc00; 
-        }
-        .card video {
-            margin-top: 15px;
-        }
-
-        /* --- AUDIO FIXED PLAYER (BAWAH) --- */
-        .audio-footer { 
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: #1f1f1f; 
-            padding: 15px; 
-            text-align: center; 
-            border-top: 2px solid #ffcc00; 
-            z-index: 100;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 15px;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        /* --- ANIMASI CSS --- */
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
+        /* Wadah Presentasi Transparan (Glassmorphism) */
+        .presentation-container {
+            position: relative;
+            width: 85%;
+            max-width: 900px;
+            height: 550px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            overflow: hidden;
+        }
 
-        /* Responsif HP */
-        @media (max-width: 768px) {
-            .menu-grid { grid-template-columns: 1fr; padding: 0 20px; }
-            .grid-layout { grid-template-columns: 1fr; }
-            header { padding: 15px 10px; }
-            nav button { font-size: 13px; margin: 2px; }
-            .hero h1 { font-size: 28px; }
+        /* Struktur Slide */
+        .slide {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            padding: 45px;
+            text-align: center;
+        }
+
+        .slide.active {
+            display: block;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        /* Animasi Muncul Slide */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Judul dan Teks */
+        h1 {
+            font-size: 2.6rem;
+            color: #00ffcc;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            text-shadow: 0 4px 10px rgba(0, 255, 204, 0.3);
+            letter-spacing: 1px;
+        }
+
+        p {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #e0e0e0;
+        }
+
+        /* Animasi Gambar Bergerak (Floating) */
+        .slide-image {
+            width: 260px;
+            height: 190px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 2px solid rgba(0, 255, 204, 0.5);
+            margin-top: 10px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+            animation: floating 3.5s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* Tombol Navigasi */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            cursor: pointer;
+            font-size: 1.3rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .nav-btn:hover {
+            background: #00ffcc;
+            color: #111;
+            border-color: #00ffcc;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.6);
+        }
+
+        .prev { left: 25px; }
+        .next { right: 25px; }
+
+        /* Kontrol Audio Atas */
+        .audio-control {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            z-index: 20;
+        }
+
+        .audio-control audio {
+            height: 35px;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .audio-control audio:hover {
+            opacity: 1;
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVIGASI UTAMA (MENU ATAS) -->
-    <header>
-        <div class="logo">🏸 Jago Badminton</div>
-        <nav>
-            <button onclick="changeSlide('slide-beranda')" id="btn-slide-beranda" class="active">Slide 1: Beranda</button>
-            <button onclick="changeSlide('slide-servis')" id="btn-slide-servis')">Slide 2: Servis</button>
-            <button onclick="changeSlide('slide-lob')" id="btn-slide-lob')">Slide 3: Lob</button>
-            <button onclick="changeSlide('slide-smash')" id="btn-slide-smash')">Slide 4: Smash</button>
-            <button onclick="changeSlide('slide-drop-net')" id="btn-slide-drop-net')">Slide 5: Drop & Net</button>
-        </nav>
-    </header>
+    <!-- Musik Latar Instrumentalia -->
+    <div class="audio-control">
+        <audio id="bgMusic" controls autoplay loop>
+            <source src="https://soundhelix.com" type="audio/mpeg">
+            Browser Anda tidak mendukung elemen audio.
+        </audio>
+    </div>
 
-    <!-- SLIDE 1: BERANDA -->
-    <div id="slide-beranda" class="slide active-slide">
-        <section class="hero">
-            <h1>Kuasai Lapangan, Jadi Juara!</h1>
-            <p>Selamat datang di platform belajar badminton online. Temukan 5 materi teknik dasar esensial yang dibagi menjadi 5 rangkaian slide interaktif.</p>
-            <button class="btn btn-large" onclick="changeSlide('slide-servis')">Mulai Lihat Slide Kedua</button>
-        </section>
+    <!-- Kontainer Presentasi -->
+    <div class="presentation-container">
+        
+        <!-- Slide 1: Judul Utama -->
+        <div class="slide active">
+            <h1>Jago Badminton</h1>
+            <p>Selamat datang di panduan kilat menguasai olahraga bulu tangkis. Mari kita pelajari 5 teknik dasar yang wajib dikuasai oleh setiap pemain pemula agar bisa bermain seperti profesional!</p>
+            <img class="slide-image" src="https://unsplash.com" alt="Raket Badminton">
+        </div>
 
-        <div class="menu-grid">
-            <button class="btn" onclick="changeSlide('slide-servis')">Slide 2: Servis</button>
-            <button class="btn" onclick="changeSlide('slide-lob')">Slide 3: Pukulan Lob</button>
-            <button class="btn" onclick="changeSlide('slide-smash')">Slide 4: Pukulan Smash</button>
-            <button class="btn" onclick="changeSlide('slide-drop-net')">Slide 5: Drop & Netting</button>
-    
+        <!-- Slide 2: Teknik 1 -->
+        <div class="slide">
+            <h1>1. Teknik Memegang Raket</h1>
+            <p>Kunci utama permainan ada pada pegangan raket. Kuasai teknik <i>Forehand Grip</i> (seperti menjabat tangan) dan <i>Backhand Grip</i> (ibu jari menekan rata pada permukaan gagang yang lebar).</p>
+            <img class="slide-image" src="https://unsplash.com" alt="Memegang Raket">
+        </div>
+
+        <!-- Slide 3: Teknik 2 -->
+        <div class="slide">
+            <h1>2. Sikap Berdiri (Stance)</h1>
+            <p>Posisi tubuh yang benar menentukan kecepatan reaksi Anda. Selalu tekuk sedikit lutut Anda, buka kaki selebar bahu, dan pastikan berat badan bertumpu pada ujung kaki agar mudah bergerak.</p>
+            <img class="slide-image" src="https://unsplash.com" alt="Posisi Siap">
+        </div>
+
+        <!-- Slide 4: Teknik 3 -->
+        <div class="slide">
+            <h1>3. Kerja Kaki (Footwork)</h1>
+            <p>Footwork yang lincah membuat Anda bisa menjangkau seluruh area lapangan dengan efektif. Atur langkah kaki Anda agar selalu seimbang saat mengejar kok ke depan, samping, maupun belakang.</p>
+            <img class="slide-image" src="https://unsplash.com" alt="Gerakan Kaki">
+        </div>
+
+        <!-- Slide 5: Teknik 4 -->
+        <div class="slide">
+            <h1>4. Servis (Serve)</h1>
+            <p>Servis adalah modal awal untuk meraih poin. Pelajari servis pendek (biasanya menggunakan backhand untuk permainan ganda) dan servis panjang tinggi (menggunakan forehand untuk permainan tunggal).</p>
+            <img class="slide-image" src="https://unsplash.com" alt="Servis Badminton">
+        </div>
+
+        <!-- Slide 6: Teknik 5 -->
+        <div class="slide">
+            <h1>5. Pukulan Smash</h1>
+            <p>Ini adalah pukulan menyerang utama untuk mematikan lawan. Lakukan lompatan, ayunkan raket sekuat tenaga dari atas ke bawah, dan arahkan kok menukik tajam ke area kosong lawan.</p>
+            <img class="slide-image" src="https://unsplash.com" alt="Pukulan Smash">
+        </div>
+
+        <!-- Navigasi Panah -->
+        <button class="nav-btn prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="nav-btn next" onclick="changeSlide(1)">&#10095;</button>
+    </div>
+
+    <!-- JavaScript untuk Mengatur Slide -->
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function changeSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide += direction;
+            
+            if (currentSlide >= slides.length) {
+                currentSlide = 0;
+            } else if (currentSlide < 0) {
+                currentSlide = slides.length - 1;
+            }
+            
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Aktivasi audio otomatis setelah klik pertama di halaman
+        document.addEventListener('click', () => {
+            const audio = document.getElementById('bgMusic');
+            if (audio.paused) {
+                audio.play().catch(error => console.log("Autoplay diblokir oleh browser."));
+            }
+        }, { once: true });
+    </script>
+</body>
+            </html>
+            
