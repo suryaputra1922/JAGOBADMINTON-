@@ -12,15 +12,20 @@
             box-sizing: border-box; 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
         }
+        
+        /* Menggunakan tautan Google Photos sebagai background utama seluruh website */
         body { 
-            background: #121212; 
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), 
+                        url('https://photos.app.goo.gl/oufMeLrbnTWcNUYe9') center/cover no-repeat fixed;
             color: #fff; 
             overflow-x: hidden; 
+            padding-bottom: 90px; /* Jarak bawah agar teks penjelasan tidak tertutup oleh player audio */
+            min-height: 100vh;
         }
 
         /* --- NAVIGASI HEADER --- */
         header { 
-            background: #1f1f1f; 
+            background: rgba(31, 31, 31, 0.95); 
             padding: 20px; 
             display: flex; 
             justify-content: space-between; 
@@ -29,6 +34,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            backdrop-filter: blur(5px);
         }
         .logo { 
             font-size: 24px; 
@@ -48,84 +54,130 @@
             color: #ffcc00; 
         }
 
-        /* --- SISTEM HALAMAN (SPA) --- */
+        /* --- SISTEM NAVIGASI HALAMAN INTERAL --- */
         .page {
-            display: none; /* Sembunyikan semua halaman secara default */
+            display: none; 
             opacity: 0;
             transform: translateY(20px);
-            transition: all 0.5s ease-in-out;
+            transition: all 0.4s ease-in-out;
             padding: 40px 20px;
         }
         .page.active-page {
-            display: block; /* Tampilkan halaman yang aktif */
+            display: block; 
             opacity: 1;
             transform: translateY(0);
         }
 
         /* --- STYLE HALAMAN 1: BERANDA --- */
         .hero { 
-            height: 70vh; 
+            height: 60vh; 
             display: flex; 
             flex-direction: column; 
             justify-content: center; 
             align-items: center; 
             text-align: center; 
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://unsplash.com') center/cover; 
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px dashed #ffcc00;
             border-radius: 10px;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 20px;
+            backdrop-filter: blur(3px);
         }
         .hero h1 { 
             font-size: 45px; 
             margin-bottom: 20px; 
-            animation: fadeInDown 1.5s ease; 
+            color: #ffcc00;
+            animation: fadeInDown 1.2s ease; 
         }
         .hero p { 
             font-size: 18px; 
             color: #ccc; 
             margin-bottom: 30px; 
-            animation: fadeInUp 1.5s ease; 
+            max-width: 600px;
+            animation: fadeInUp 1.2s ease; 
         }
+        
+        /* Menu Grid Navigasi di Beranda */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            max-width: 1200px;
+            margin: 30px auto 0 auto;
+        }
+
+        /* --- BUTTONS --- */
         .btn { 
-            padding: 12px 30px; 
+            padding: 15px 20px; 
             background: #ffcc00; 
             color: #121212; 
             font-weight: bold; 
-            text-decoration: none; 
+            text-align: center;
             border-radius: 5px; 
             transition: 0.3s; 
-            animation: pulse 2s infinite; 
             cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 10px rgba(255, 204, 0, 0.2);
         }
         .btn:hover { 
             background: #fff; 
+            transform: scale(1.05);
+        }
+        .btn-large {
+            padding: 15px 40px;
+            font-size: 18px;
+            animation: pulse 2s infinite;
         }
 
-        /* --- LAYOUT KONTEN TEKNIK (HALAMAN 2, 3, 4, 5) --- */
+        /* --- TAMPILAN KOTAK PENJELASAN TEKNIK (HALAMAN 2, 3, 4, 5) --- */
         .container { 
             max-width: 900px; 
             margin: 0 auto; 
-            padding: 30px; 
-            background: #1f1f1f; 
+            padding: 35px; 
+            background: rgba(25, 25, 25, 0.9); /* Lapisan gelap tebal agar teks penjelasan kontras dan terbaca */
             border-radius: 10px; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+            border-left: 6px solid #ffcc00;
+            backdrop-filter: blur(8px);
         }
         .container h1 { 
             color: #ffcc00; 
-            margin-bottom: 20px; 
+            margin-bottom: 25px; 
             font-size: 32px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+        }
+        .container h2 {
+            color: #ffcc00;
+            margin: 25px 0 10px 0;
+            font-size: 22px;
         }
         .container p { 
-            line-height: 1.7; 
-            color: #ddd; 
-            margin-bottom: 20px; 
+            line-height: 1.8; 
+            color: #eee; 
+            margin-bottom: 15px; 
+            font-size: 16px;
         }
+        .step-list {
+            margin-left: 25px;
+            margin-bottom: 25px;
+            color: #ddd;
+            line-height: 1.8;
+        }
+        .step-list li {
+            margin-bottom: 10px;
+            list-style-type: square;
+        }
+        
+        /* Wadah Pemutar Video Lokal */
         .video-box { 
             text-align: center; 
-            margin: 30px 0; 
+            margin: 35px 0; 
             background: #000; 
-            padding: 15px; 
+            padding: 20px; 
             border-radius: 8px; 
+            border: 1px solid rgba(255, 204, 0, 0.3);
         }
         .video-box h3 {
             margin-bottom: 15px;
@@ -138,11 +190,11 @@
             border-radius: 5px;
         }
 
-        /* Khusus halaman Smash warna aksen merah */
-        #smash h1, #smash video {
-            color: #ff4444;
-            border-color: #ff4444;
-        }
+        /* Desain Aksen Khusus Halaman Smash (Merah) */
+        #smash .container { border-left-color: #ff4444; }
+        #smash h1, #smash h2, #smash h3, #smash video { color: #ff4444; border-color: #ff4444; }
+        #smash .btn { background: #ff4444; color: #fff; }
+        #smash .btn:hover { background: #fff; color: #121212; }
 
         /* --- LAYOUT GRID HALAMAN 5 (DROP SHOT & NETTING) --- */
         .grid-layout { 
@@ -152,27 +204,27 @@
             margin-top: 30px; 
         }
         .card { 
-            background: #2a2a2a; 
+            background: rgba(42, 42, 42, 0.95); 
             padding: 20px; 
             border-radius: 8px; 
             border-top: 4px solid #ffcc00; 
             transition: transform 0.3s; 
         }
         .card:hover { 
-            transform: translateY(-10px); 
+            transform: translateY(-5px); 
         }
         .card video {
             margin-top: 15px;
         }
 
-        /* --- AUDIO FIXED PLAYER --- */
+        /* --- AUDIO FIXED FOOTER --- */
         .audio-footer { 
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
             background: #1f1f1f; 
-            padding: 10px; 
+            padding: 15px; 
             text-align: center; 
             border-top: 2px solid #ffcc00; 
             z-index: 100;
@@ -182,30 +234,32 @@
             gap: 15px;
         }
 
-        /* --- ANIMASI CSS --- */
+        /* --- KEYFRAMES ANIMASI CSS --- */
         @keyframes bounce { 
             0%, 100% { transform: translateY(0); } 
             50% { transform: translateY(-5px); } 
         }
         @keyframes fadeInDown { 
-            from { opacity: 0; transform: translateY(-50px); } 
+            from { opacity: 0; transform: translateY(-30px); } 
             to { opacity: 1; transform: translateY(0); } 
         }
         @keyframes fadeInUp { 
-            from { opacity: 0; transform: translateY(50px); } 
+            from { opacity: 0; transform: translateY(30px); } 
             to { opacity: 1; transform: translateY(0); } 
         }
         @keyframes pulse { 
             0% { transform: scale(1); } 
-            50% { transform: scale(1.05); } 
+            50% { transform: scale(1.03); } 
             100% { transform: scale(1); } 
         }
 
-        /* Responsive Breakpoint */
+        /* Optimasi Tampilan Layar HP */
         @media (max-width: 768px) {
+            .menu-grid { grid-template-columns: 1fr; padding: 0 20px; }
             .grid-layout { grid-template-columns: 1fr; }
             header { flex-direction: column; gap: 15px; text-align: center; }
-            nav a { margin: 0 10px; }
+            nav a { margin: 0 8px; font-size: 14px; }
+            .hero h1 { font-size: 32px; }
         }
     </style>
 </head>
@@ -227,64 +281,21 @@
     <div id="beranda" class="page active-page">
         <section class="hero">
             <h1>Kuasai Lapangan, Jadi Juara!</h1>
-            <p>Pelajari 5 teknik dasar badminton esensial untuk meningkatkan performa bermain Anda.</p>
-            <div class="btn" onclick="switchPage('servis')">Mulai Belajar Sekarang</div>
+            <p>Selamat datang di platform belajar badminton online. Pelajari 5 teknik dasar esensial di bawah ini secara mendalam dilengkapi video panduan.</p>
+            <button class="btn btn-large" onclick="switchPage('servis')">Mulai Belajar Berurutan</button>
         </section>
+
+        <!-- Menu Pintasan ke Penjelasan Teknik -->
+        <div class="menu-grid">
+            <button class="btn" onclick="switchPage('servis')">1. Teknik Servis</button>
+            <button class="btn" onclick="switchPage('lob')">2. Pukulan Lob</button>
+            <button class="btn" onclick="switchPage('smash')">3. Pukulan Smash</button>
+            <button class="btn" onclick="switchPage('drop-net')">4 & 5. Drop & Netting</button>
+        </div>
     </div>
 
     <!-- HALAMAN 2: SERVIS -->
     <div id="servis" class="page">
         <div class="container">
             <h1>1. Teknik Dasar Servis</h1>
-            <p>Servis adalah modal awal untuk memulai permainan dan meraih poin. Ada dua jenis servis utama dalam badminton, yaitu <strong>Servis Pendek (Short Serve)</strong> yang sering digunakan dalam sektor ganda, dan <strong>Servis Panjang (Long Serve)</strong> yang sering digunakan dalam sektor tunggal tunggal.</p>
             
-            <div class="video-box">
-                <h3>Tonton Video Tutorial Servis:</h3>
-                <video controls>
-                    <source src="assets/servis.mp4" type="video/mp4">
-                    Browser Anda tidak mendukung pemutar video.
-                </video>
-            </div>
-            <p>Tips penting: Pastikan posisi kaki kokoh dan perkenaan raket dengan shuttlecock berada di bawah pinggang sesuai regulasi resmi BWF.</p>
-        </div>
-    </div>
-
-    <!-- HALAMAN 3: PUKULAN LOB -->
-    <div id="lob" class="page">
-        <div class="container">
-            <h1>2. Teknik Pukulan Lob (Clear Shot)</h1>
-            <p>Pukulan Lob bertujuan untuk menerbangkan shuttlecock setinggi mungkin dan jatuh jauh di garis belakang area lapangan lawan. Teknik ini sangat berguna untuk bertahan dan mengatur ulang posisi berdiri Anda ketika sedang ditekan oleh lawan.</p>
-            
-            <div class="video-box">
-                <h3>Tonton Video Tutorial Lob:</h3>
-                <video controls>
-                    <source src="assets/lob.mp4" type="video/mp4">
-                    Browser Anda tidak mendukung pemutar video.
-                </video>
-            </div>
-            <p>Tips penting: Gunakan gerakan lecutan pergelangan tangan (wrist snap) pada saat raket menyentuh shuttlecock untuk hasil lambungan yang maksimal.</p>
-        </div>
-    </div>
-
-    <!-- HALAMAN 4: SMASH -->
-    <div id="smash" class="page">
-        <div class="container">
-            <h1>3. Teknik Pukulan Smash</h1>
-            <p>Smash adalah pukulan ofensif terkuat dalam badminton. Pukulan ini dilakukan dengan kekuatan penuh dari posisi atas agar shuttlecock menukik tajam dengan kecepatan tinggi ke arah lantai lapangan lawan untuk mematikan bola dengan cepat.</p>
-            
-            <div class="video-box">
-                <h3>Tonton Video Tutorial Smash:</h3>
-                <video controls>
-                    <source src="assets/smash.mp4" type="video/mp4">
-                    Browser Anda tidak mendukung pemutar video.
-                </video>
-            </div>
-            <p>Tips penting: Lakukan lompatan (jumping smash) untuk mendapatkan sudut pukulan yang lebih curam dan tajam.</p>
-        </div>
-    </div>
-
-    <!-- HALAMAN 5: DROP SHOT & NETTING -->
-    <div id="drop-net" class="page">
-        <div class="container">
-            <h1>4 & 5. Drop Shot & Netting</h1>
-    
