@@ -13,12 +13,12 @@
             font-family: Arial, sans-serif;
         }
 
-        /* Latar Belakang Lapangan Badminton Realistis (Estetik) */
+        /* Latar Belakang Lapangan Badminton Ringan */
         body {
             background-color: #0b132b;
             background-image: 
-                linear-gradient(rgba(11, 19, 43, 0.8), rgba(28, 37, 65, 0.85)),
-                url("https://unsplash.com");
+                linear-gradient(rgba(11, 19, 43, 0.85), rgba(28, 37, 65, 0.9)),
+                url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='100%25' height='100%25' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%230b132b'/%3E%3Cpath d='M 50,50 L 750,50 L 750,550 L 50,550 Z M 50,300 L 750,300 M 400,50 L 400,550' fill='none' stroke='rgba(0,255,204,0.1)' stroke-width='4'/%3E%3C/svg%3E");
             background-size: cover;
             background-position: center;
             color: #ffffff;
@@ -26,66 +26,64 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 15px;
         }
 
         /* Kotak Presentasi Utama */
         .slide-box {
             width: 100%;
-            max-width: 700px;
+            max-width: 600px;
             background: #1c2541;
             border: 3px solid #00ffcc;
             border-radius: 15px;
-            padding: 30px;
+            padding: 25px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            position: relative;
         }
 
-        /* Sistem Slide Tanpa JavaScript */
+        /* Mengunci Semua Slide Supaya Tersembunyi */
         .halaman {
             display: none;
         }
 
-        #slide1, .halaman:target {
+        /* Hanya Tampilkan yang Memiliki Class .aktif (Mencegah Teks Menumpuk) */
+        .halaman.aktif {
             display: block;
-        }
-
-        .halaman:target ~ #slide1 {
-            display: none;
         }
 
         h1 {
             color: #00ffcc;
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin-bottom: 15px;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         p {
-            font-size: 1.1rem;
-            line-height: 1.6;
+            font-size: 1rem;
+            line-height: 1.5;
             color: #e0e0e0;
-            margin-bottom: 25px;
-            min-height: 80px;
+            margin-bottom: 20px;
+            min-height: 70px;
         }
 
         /* Desain Foto Asli Bergerak Melayang */
         .gambar-realistis {
             display: inline-block;
-            width: 320px;
+            width: 100%;
+            max-width: 320px;
             height: 200px;
-            object-fit: cover; /* Mencegah foto gepeng */
+            object-fit: cover;
             border: 2px solid #00ffcc;
             border-radius: 10px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
             animation: melayang 3.5s ease-in-out infinite;
         }
 
         @keyframes melayang {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
+            50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
 
@@ -95,18 +93,19 @@
             justify-content: space-between;
             align-items: center;
             border-top: 2px solid rgba(255,255,255,0.1);
-            padding-top: 20px;
+            padding-top: 15px;
+            margin-top: 10px;
         }
 
         .btn {
-            display: inline-block;
             background-color: #00ffcc;
             color: #0b132b;
-            text-decoration: none;
-            padding: 12px 25px;
-            font-size: 1rem;
+            border: none;
+            padding: 10px 20px;
+            font-size: 0.9rem;
             font-weight: bold;
-            border-radius: 8px;
+            border-radius: 6px;
+            cursor: pointer;
             transition: background 0.2s;
         }
 
@@ -115,7 +114,7 @@
         }
 
         .nomor-halaman {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: bold;
             color: #00ffcc;
         }
@@ -126,7 +125,7 @@
         
         audio {
             width: 100%;
-            max-width: 300px;
+            max-width: 280px;
             height: 30px;
         }
     </style>
@@ -143,78 +142,87 @@
         </div>
         
         <!-- ================= SLIDE 1 ================= -->
-        <div id="slide1" class="halaman">
+        <div class="halaman aktif">
             <h1>Jago Badminton</h1>
             <p>Selamat datang di panduan menguasai teknik bulu tangkis. Mari kita pelajari 5 teknik dasar yang wajib dikuasai oleh pemain pemula agar bisa bertanding dengan hebat!</p>
-            <img src="https://unsplash.com" class="gambar-realistis" alt="Raket dan Kok">
-            <div class="tombol-bar">
-                <a href="#slide6" class="btn">KEMBALI</a>
-                <div class="nomor-halaman">1 / 6</div>
-                <a href="#slide2" class="btn">LANJUT</a>
-            </div>
+            <img src="https://picsum.photos" class="gambar-realistis" alt="Raket dan Kok">
         </div>
 
         <!-- ================= SLIDE 2 ================= -->
-        <div id="slide2" class="halaman">
+        <div class="halaman">
             <h1>1. Memegang Raket (Grip)</h1>
             <p>Kunci utama permainan ada pada genggaman. Kuasai teknik Forehand Grip (seperti bersalaman) dan Backhand Grip (ibu jari menekan rata pada gagang raket).</p>
-            <img src="https://unsplash.com" class="gambar-realistis" alt="Memegang Raket">
-            <div class="tombol-bar">
-                <a href="#slide1" class="btn">KEMBALI</a>
-                <div class="nomor-halaman">2 / 6</div>
-                <a href="#slide3" class="btn">LANJUT</a>
-            </div>
+            <img src="https://picsum.photos" class="gambar-realistis" alt="Memegang Raket">
         </div>
 
         <!-- ================= SLIDE 3 ================= -->
-        <div id="slide3" class="halaman">
+        <div class="halaman">
             <h1>2. Sikap Berdiri (Stance)</h1>
             <p>Posisi tubuh menentukan kecepatan reaksi. Selalu tekuk sedikit lutut Anda, buka kaki selebar bahu, dan bertumpu pada ujung kaki agar siap bergerak ke segala arah.</p>
-            <img src="https://unsplash.com" class="gambar-realistis" alt="Posisi Siap Bermain">
-            <div class="tombol-bar">
-                <a href="#slide2" class="btn">KEMBALI</a>
-                <div class="nomor-halaman">3 / 6</div>
-                <a href="#slide4" class="btn">LANJUT</a>
-            </div>
+            <img src="https://picsum.photos" class="gambar-realistis" alt="Posisi Siap Bermain">
         </div>
 
         <!-- ================= SLIDE 4 ================= -->
-        <div id="slide4" class="halaman">
+        <div class="halaman">
             <h1>3. Kerja Kaki (Footwork)</h1>
             <p>Footwork yang lincah membuat Anda bisa menjangkau seluruh area lapangan. Atur langkah kaki Anda agar selalu seimbang saat mengejar kok depan maupun belakang.</p>
-            <img src="https://unsplash.com" class="gambar-realistis" alt="Gerakan Kaki Lapangan">
-            <div class="tombol-bar">
-                <a href="#slide3" class="btn">KEMBALI</a>
-                <div class="nomor-halaman">4 / 6</div>
-                <a href="#slide5" class="btn">LANJUT</a>
-            </div>
+            <img src="https://picsum.photos" class="gambar-realistis" alt="Gerakan Kaki Lapangan">
         </div>
 
         <!-- ================= SLIDE 5 ================= -->
-        <div id="slide5" class="halaman">
+        <div class="halaman">
             <h1>4. Teknik Servis (Serve)</h1>
             <p>Servis adalah modal awal untuk memulai permainan dan meraih poin. Pelajari servis pendek (backhand) untuk ganda dan servis tinggi (forehand) untuk tunggal.</p>
-            <img src="https://unsplash.com" class="gambar-realistis" alt="Melakukan Servis">
-            <div class="tombol-bar">
-                <a href="#slide4" class="btn">KEMBALI</a>
-                <div class="nomor-halaman">5 / 6</div>
-                <a href="#slide6" class="btn">LANJUT</a>
-            </div>
+            <img src="https://picsum.photos" class="gambar-realistis" alt="Melakukan Servis">
         </div>
 
         <!-- ================= SLIDE 6 ================= -->
-        <div id="slide6" class="halaman">
+        <div class="halaman">
             <h1>5. Pukulan Smash</h1>
             <p>Ini adalah pukulan menyerang utama untuk mematikan lawan. Lakukan lompatan, ayunkan raket sekuat tenaga dari atas, dan arahkan kok menukik tajam ke area lawan.</p>
-            <img src="https://unsplash.com" class="gambar-realistis" alt="Pukulan Smash Keras">
-            <div class="tombol-bar">
-                <a href="#slide5" class="btn">KEMBALI</a>
-                <div class="nomor-halaman">6 / 6</div>
-                <a href="#slide1" class="btn">LANJUT</a>
-            </div>
+            <img src="https://picsum.photos" class="gambar-realistis" alt="Pukulan Smash Keras">
+        </div>
+
+        <!-- Bar Kontrol Navigasi Terpadu -->
+        <div class="tombol-bar">
+            <button class="btn" onclick="gantiSlide(-1)">KEMBALI</button>
+            <div class="nomor-halaman" id="statusHalaman">1 / 6</div>
+            <button class="btn" onclick="gantiSlide(1)">LANJUT</button>
         </div>
 
     </div>
 
-                </body>
-                
+    <script>
+        let slideSekarang = 0;
+        const listHalaman = document.querySelectorAll('.halaman');
+        const infoAngka = document.getElementById('statusHalaman');
+
+        function gantiSlide(arah) {
+            // Sembunyikan halaman lama
+            listHalaman[slideSekarang].classList.remove('aktif');
+            
+            // Hitung halaman baru
+            slideSekarang += arah;
+            if (slideSekarang >= listHalaman.length) {
+                slideSekarang = 0;
+            } else if (slideSekarang < 0) {
+                slideSekarang = listHalaman.length - 1;
+            }
+            
+            // Tampilkan halaman baru
+            listHalaman[slideSekarang].classList.add('aktif');
+            
+            // Perbarui teks halaman
+            infoAngka.innerText = (slideSekarang + 1) + " / " + listHalaman.length;
+        }
+
+        // Jalankan audio musik secara aman setelah klik pertama di halaman
+        document.addEventListener('click', () => {
+            const audio = document.getElementById('lagu');
+            if (audio && audio.paused) {
+                audio.play().catch(e => console.log("Audio otomatis ditahan browser"));
+            }
+        }, { once: true });
+    </script>
+</body>
+</html>
