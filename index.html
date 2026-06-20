@@ -14,13 +14,13 @@
 
         /* --- PENGATURAN BACKGROUND BELAKANG --- */
         body {
-            /* Tempel/Paste link gambar yang sudah kamu copy di antara tanda petik di bawah ini */
-            background-image: url('PASTE_LINK_GAMBAR_DI_SINI'); 
+            /* Link gambar latar belakang langsung dari artikel Ludus.id */
+            background-image: url('https://ludus.id/wp-content/uploads/2024/05/Anisanaya-Kamila-2-e1714704386450.jpeg'); 
             
             background-size: cover;          /* Gambar menutupi seluruh layar browser */
             background-position: center;     /* Posisi gambar tepat di tengah */
-            background-repeat: no-repeat;    /* Gambar tidak akan mengulang (pecah/tile) */
-            background-attachment: fixed;    /* Background terkunci (tidak ikut bergerak saat di-scroll) */
+            background-repeat: no-repeat;    /* Gambar tidak akan mengulang */
+            background-attachment: fixed;    /* Background terkunci saat di-scroll */
             
             color: #2c3e50;
             display: flex;
@@ -31,12 +31,12 @@
             overflow: hidden;
         }
 
-        /* Kotak Slide: Dibuat transparan (0.85) agar background belakang terlihat samar-samar */
+        /* Kotak Slide: Efek kaca transparan premium agar background belakang tetap kelihatan */
         .slide-container {
             width: 85%;
             max-width: 850px;
             height: 480px;
-            background-color: rgba(255, 255, 255, 0.85); 
+            background-color: rgba(255, 255, 255, 0.88); 
             border-radius: 15px;
             padding: 35px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
@@ -45,7 +45,7 @@
             justify-content: space-between;
             position: relative;
             border: 3px solid #d4af37;
-            backdrop-filter: blur(5px); /* Memberikan efek blur estetik pada background di belakang kotak */
+            backdrop-filter: blur(8px); /* Memberikan efek blur estetik pada gambar di balik kotak */
         }
 
         .slide-container.active {
@@ -91,7 +91,7 @@
         p {
             font-size: 1rem;
             line-height: 1.5;
-            color: #34495e;
+            color: #2c3e50;
             font-weight: 500;
         }
 
@@ -164,10 +164,11 @@
             margin-top: 15px;
             font-size: 0.9rem;
             font-weight: 600;
-            color: #4a5568;
-            background-color: rgba(255, 255, 255, 0.6);
-            padding: 2px 10px;
+            color: #2c3e50;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 3px 12px;
             border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         @keyframes fadeIn {
