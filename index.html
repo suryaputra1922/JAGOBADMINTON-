@@ -12,10 +12,10 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* --- PENGATURAN BACKGROUND BELAKANG --- */
+        /* --- PENGATURAN BACKGROUND BELAKANG (Foto Lapangan Badminton Dunia) --- */
         body {
-            /* DIJAMIN BERHASIL: Mengambil gambar langsung dari file lokal proyekmu */
-            background-image: url('bg-badminton.jpg'); 
+            /* Menggunakan gambar arena badminton dunia premium yang anti-blokir */
+            background-image: url('https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?q=80&w=1920&auto=format&fit=crop'); 
             
             background-size: cover;          
             background-position: center;     
@@ -31,21 +31,21 @@
             overflow: hidden;
         }
 
-        /* Kotak Slide: Efek kaca transparan premium agar background belakang tetap kelihatan */
+        /* Kotak Slide: Efek kaca transparan mewah (Frosted Glass) */
         .slide-container {
             width: 85%;
             max-width: 850px;
             height: 480px;
-            background-color: rgba(255, 255, 255, 0.88); 
+            background-color: rgba(255, 255, 255, 0.90); 
             border-radius: 15px;
             padding: 35px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
             display: none;
             flex-direction: column;
             justify-content: space-between;
             position: relative;
-            border: 3px solid #d4af37;
-            backdrop-filter: blur(8px); /* Memberikan efek blur estetik pada gambar di balik kotak */
+            border: 3px solid #d4af37; /* Border Emas */
+            backdrop-filter: blur(8px); /* Blur estetik latar belakang */
         }
 
         .slide-container.active {
@@ -124,7 +124,7 @@
             border-radius: 5px;
         }
 
-        /* Navigasi */
+        /* Navigasi Tombol */
         .navigation {
             margin-top: 20px;
             display: flex;
@@ -194,7 +194,7 @@
 
     <div class="slide-container">
         <div class="slide-content">
-            <img class="slide-image" src="gambar/grip.jpg" alt="Teknik Grip">
+            <img class="slide-image" src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?q=80&w=500&auto=format&fit=crop" alt="Teknik Grip">
             <div>
                 <h2>1. Memegang Raket (Grip)</h2>
                 <p>
@@ -211,7 +211,7 @@
 
     <div class="slide-container">
         <div class="slide-content">
-            <img class="slide-image" src="gambar/footwork.jpg" alt="Teknik Footwork">
+            <img class="slide-image" src="https://images.unsplash.com/photo-1613918108466-292b78a8ef95?q=80&w=500&auto=format&fit=crop" alt="Teknik Footwork">
             <div>
                 <h2>2. Pergerakan Kaki (Footwork)</h2>
                 <p>
@@ -227,7 +227,7 @@
 
     <div class="slide-container">
         <div class="slide-content">
-            <img class="slide-image" src="gambar/servis.jpg" alt="Teknik Servis">
+            <img class="slide-image" src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?q=80&w=500&auto=format&fit=crop" alt="Teknik Servis">
             <div>
                 <h2>3. Teknik Servis (Serve)</h2>
                 <p>
@@ -244,7 +244,7 @@
 
     <div class="slide-container">
         <div class="slide-content">
-            <img class="slide-image" src="gambar/smash.jpg" alt="Pukulan Smash">
+            <img class="slide-image" src="https://images.unsplash.com/photo-1521537634180-60aca3d2434a?q=80&w=500&auto=format&fit=crop" alt="Pukulan Smash">
             <div>
                 <h2>4. Pukulan Smash</h2>
                 <p>
@@ -260,7 +260,7 @@
 
     <div class="slide-container">
         <div class="slide-content">
-            <img class="slide-image" src="gambar/dropshot.jpg" alt="Pukulan Dropshot">
+            <img class="slide-image" src="https://images.unsplash.com/photo-1622599247881-2e78387fa769?q=80&w=500&auto=format&fit=crop" alt="Pukulan Dropshot">
             <div>
                 <h2>5. Pukulan Dropshot</h2>
                 <p>
@@ -285,6 +285,7 @@
         let currentSlide = 0;
         let slides, prevBtn, nextBtn, slideNum;
 
+        // Anti-Error: Script berjalan setelah seluruh elemen web siap dimuat
         window.onload = function() {
             slides = document.querySelectorAll('.slide-container');
             prevBtn = document.getElementById('prevBtn');
@@ -297,11 +298,13 @@
         function updateUI() {
             if (!slides || !prevBtn || !nextBtn || !slideNum) return;
 
+            // Mengunci tombol jika sudah di ujung halaman
             prevBtn.disabled = currentSlide === 0;
             nextBtn.disabled = currentSlide === slides.length - 1;
             
             slideNum.innerText = `Slide ${currentSlide + 1} dari ${slides.length}`;
 
+            // Reset otomatis suara tiap ganti slide agar tidak tabrakan
             const allAudios = document.querySelectorAll('audio');
             allAudios.forEach(audio => {
                 audio.pause();
