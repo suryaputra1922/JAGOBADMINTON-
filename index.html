@@ -1,202 +1,190 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jago Badminton</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jago Badminton - Teknik Dasar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
-}
+        body {
+            background-color: #1a1a2e;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
 
-body{
-    background:#f4f4f4;
-}
+        .slide-container {
+            width: 80%;
+            max-width: 800px;
+            height: 450px;
+            background-color: #16213e;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            border: 2px solid #0f3460;
+        }
 
-header{
-    background:#006400;
-    color:white;
-    text-align:center;
-    padding:20px;
-}
+        .slide-container.active {
+            display: flex;
+            animation: fadeIn 0.5s ease-in-out;
+        }
 
-.slider{
-    position:relative;
-    width:100%;
-    height:100vh;
-    overflow:hidden;
-}
+        h1 {
+            color: #e94560;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
 
-.slide{
-    position:absolute;
-    width:100%;
-    height:100%;
-    opacity:0;
-    animation:slideShow 25s infinite;
-}
+        h2 {
+            color: #00d2fc;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
 
-.slide:nth-child(1){animation-delay:0s;}
-.slide:nth-child(2){animation-delay:5s;}
-.slide:nth-child(3){animation-delay:10s;}
-.slide:nth-child(4){animation-delay:15s;}
-.slide:nth-child(5){animation-delay:20s;}
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #e2e8f0;
+        }
 
-@keyframes slideShow{
-    0%{opacity:0;}
-    5%{opacity:1;}
-    20%{opacity:1;}
-    25%{opacity:0;}
-    100%{opacity:0;}
-}
+        .navigation {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+        }
 
-.slide img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    filter:brightness(50%);
-}
+        button {
+            background-color: #e94560;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
 
-.content{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    color:white;
-    text-align:center;
-    width:80%;
-}
+        button:hover {
+            background-color: #ff6b81;
+        }
 
-.content h2{
-    font-size:45px;
-    margin-bottom:20px;
-}
+        button:disabled {
+            background-color: #4a5568;
+            cursor: not-allowed;
+        }
 
-.content p{
-    font-size:22px;
-    line-height:1.5;
-}
+        .slide-number {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #a0aec0;
+        }
 
-.animasi{
-    width:150px;
-    margin-top:20px;
-    animation:gerak 2s infinite alternate;
-}
-
-@keyframes gerak{
-    from{
-        transform:translateY(0);
-    }
-    to{
-        transform:translateY(-20px);
-    }
-}
-
-.video-section{
-    text-align:center;
-    padding:40px;
-    background:white;
-}
-
-video{
-    width:80%;
-    max-width:800px;
-    border-radius:15px;
-}
-
-footer{
-    text-align:center;
-    background:#006400;
-    color:white;
-    padding:15px;
-}
-</style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-    <h1>🏸 Jago Badminton</h1>
-    <p>Belajar Strategi Bermain Badminton yang Efektif</p>
-</header>
-
-<!-- AUDIO -->
-<audio controls autoplay loop style="width:100%;">
-    <source src="audio.mp3" type="audio/mpeg">
-    Browser tidak mendukung audio.
-</audio>
-
-<!-- SLIDER -->
-<div class="slider">
-
-    <!-- Slide 1 -->
-    <div class="slide">
-        <img src="gambar1.jpg" alt="Badminton">
-        <div class="content">
-            <h2>Strategi 1</h2>
-            <p>Kuasai teknik servis untuk memulai permainan dengan baik.</p>
-            <img src="gambar1.jpg" class="animasi">
-        </div>
+    <div class="slide-container active">
+        <h1>Jago Badminton</h1>
+        <p style="text-align: center; font-size: 1.3rem;">
+            Selamat datang di panduan digital "Jago Badminton". <br>
+            Mari pelajari 5 teknik dasar penting untuk menguasai lapangan bulu tangkis!
+        </p>
     </div>
 
-    <!-- Slide 2 -->
-    <div class="slide">
-        <img src="gambar2.jpg" alt="Badminton">
-        <div class="content">
-            <h2>Strategi 2</h2>
-            <p>Latih footwork agar pergerakan di lapangan lebih cepat.</p>
-            <img src="gambar2.jpg" class="animasi">
-        </div>
+    <div class="slide-container">
+        <h2>1. Teknik Memegang Raket (Grip)</h2>
+        <p>
+            Cara memegang raket adalah fondasi utama. Ada dua jenis grip yang paling sering digunakan:
+            <br><br>
+            • <strong>Forehand Grip:</strong> Posisi tangan seperti bersalaman, membentuk huruf 'V' di antara jempol dan telunjuk.
+            <br>
+            • <strong>Backhand Grip:</strong> Ibu jari digeser ke permukaan gagang raket yang lebih lebar untuk memberikan dorongan ekstra.
+        </p>
     </div>
 
-    <!-- Slide 3 -->
-    <div class="slide">
-        <img src="gambar3.jpg" alt="Badminton">
-        <div class="content">
-            <h2>Strategi 3</h2>
-            <p>Gunakan smash saat lawan berada dalam posisi bertahan.</p>
-            <img src="gambar3.jpg" class="animasi">
-        </div>
+    <div class="slide-container">
+        <h2>2. Pergerakan Kaki (Footwork)</h2>
+        <p>
+            Badminton adalah tentang kecepatan. Footwork yang benar memastikan kamu bisa menjangkau kok (shuttlecock) ke segala sudut lapangan dengan efisien dan seimbang. 
+            <br><br>
+            Kuncinya adalah selalu kembali ke posisi tengah (center court) setelah memukul kok agar siap menerima serangan berikutnya.
+        </p>
     </div>
 
-    <!-- Slide 4 -->
-    <div class="slide">
-        <img src="gambar4.jpg" alt="Badminton">
-        <div class="content">
-            <h2>Strategi 4</h2>
-            <p>Manfaatkan drop shot untuk mengecoh lawan.</p>
-            <img src="gambar4.jpg" class="animasi">
-        </div>
+    <div class="slide-container">
+        <h2>3. Teknik Servis (Serve)</h2>
+        <p>
+            Pertandingan dimulai dari servis. Servis yang baik bisa langsung menghasilkan poin atau menyulitkan lawan untuk menyerang.
+            <br><br>
+            • <strong>Servis Pendek (Short Serve):</strong> Biasanya dipakai di sektor ganda, kok meluncur tipis di atas net.
+            <br>
+            • <strong>Servis Panjang (Long Serve):</strong> Sering dipakai di sektor tunggal, kok dilempar tinggi jauh ke garis belakang lawan.
+        </p>
     </div>
 
-    <!-- Slide 5 -->
-    <div class="slide">
-        <img src="gambar5.jpg" alt="Badminton">
-        <div class="content">
-            <h2>Strategi 5</h2>
-            <p>Tetap fokus dan jaga stamina selama pertandingan.</p>
-            <img src="gambar5.jpg" class="animasi">
-        </div>
+    <div class="slide-container">
+        <h2>4. Pukulan Smash</h2>
+        <p>
+            Ini adalah senjata utama untuk mematikan langkah lawan dan mencetak skor. 
+            <br><br>
+            Smash adalah pukulan ofensif yang dilakukan dengan melompat atau berdiri tegak, memukul kok dari posisi tinggi dengan kekuatan penuh ke arah area kosong di lapangan lawan secara menukik tajam.
+        </p>
     </div>
 
-</div>
+    <div class="slide-container">
+        <h2>5. Pukulan Dropshot</h2>
+        <p>
+            Jika smash mengandalkan kekuatan, dropshot mengandalkan kecerdikan dan kelembutan.
+            <br><br>
+            Teknik ini dilakukan dengan gerakan seperti ingin melakukan smash, namun di detik terakhir raket hanya menyentuh kok dengan halus agar jatuh tipis di dekat net lawan. Sangat ampuh untuk mengecoh lawan yang terlanjur mundur ke belakang.
+        </p>
+    </div>
 
-<!-- VIDEO -->
-<div class="video-section">
-    <h2>Video Pembelajaran Badminton</h2>
-    <br>
-    <video controls>
-        <source src="video.mp4" type="video/mp4">
-        Browser tidak mendukung video.
-    </video>
-</div>
+    <div class="navigation">
+        <button id="prevBtn" onclick="changeSlide(-1)" disabled>Sebelumnya</button>
+        <button id="nextBtn" onclick="changeSlide(1)">Selanjutnya</button>
+    </div>
 
-<footer>
-    <h3>© 2026 Jago Badminton</h3>
-</footer>
+    <div class="slide-number" id="slideNum">Slide 1 dari 6</div>
 
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide-container');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const slideNum = document.getElementById('slideNum');
+
+        function changeSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide += direction;
+            slides[currentSlide].classList.add('active');
+
+            // Update tombol tombol kontrol
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === slides.length - 1;
+
+            // Update text slide
+            slideNum.innerText = `Slide ${currentSlide + 1} dari ${slides.length}`;
+        }
+    </script>
 </body>
 </html>
