@@ -19,7 +19,7 @@
                         url('https://unsplash.com') center/cover no-repeat fixed;
             color: #fff; 
             overflow-x: hidden; 
-            padding-bottom: 100px; 
+            padding-bottom: 120px; 
             min-height: 100vh;
         }
 
@@ -27,9 +27,7 @@
         header { 
             background: rgba(25, 25, 25, 0.95); 
             padding: 20px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
+            text-align: center;
             border-bottom: 3px solid #ffcc00; 
             position: sticky;
             top: 0;
@@ -40,20 +38,27 @@
             font-weight: bold; 
             color: #ffcc00; 
             animation: bounce 2s infinite; 
+            margin-bottom: 15px;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         nav button { 
             background: none;
             border: none;
             color: #fff; 
-            margin-left: 15px; 
             font-weight: 500; 
-            font-size: 16px;
+            font-size: 15px;
             transition: 0.3s; 
             cursor: pointer;
             padding: 5px 10px;
         }
         nav button:hover, nav button.active { 
             color: #ffcc00; 
+            border-bottom: 2px solid #ffcc00;
         }
 
         /* --- SISTEM NAVIGASI SLIDE (SPA) --- */
@@ -72,7 +77,7 @@
 
         /* --- STYLE SLIDE 1: BERANDA --- */
         .hero { 
-            height: 50vh; 
+            height: 45vh; 
             display: flex; 
             flex-direction: column; 
             justify-content: center; 
@@ -87,7 +92,7 @@
             backdrop-filter: blur(5px);
         }
         .hero h1 { 
-            font-size: 45px; 
+            font-size: 40px; 
             margin-bottom: 20px; 
             color: #ffcc00;
             animation: fadeInDown 1s ease; 
@@ -131,6 +136,21 @@
             padding: 15px 40px;
             font-size: 18px;
             animation: pulse 2s infinite;
+        }
+        
+        /* Navigasi Bawah (Kembali & Lanjut) */
+        .slide-nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 20px;
+        }
+        .btn-nav-prev {
+            background: #444;
+            color: #fff;
+        }
+        .btn-nav-prev:hover {
+            background: #666;
         }
 
         /* --- WADAH ISI PENJELASAN TEKNIK (SLIDE 2, 3, 4, 5) --- */
@@ -195,8 +215,8 @@
         /* Desain Khusus Slide 4: Smash (Aksen Merah) */
         #slide-smash .container { border-left-color: #ff4444; }
         #slide-smash h1, #slide-smash h2, #slide-smash h3, #slide-smash video { color: #ff4444; border-color: #ff4444; }
-        #slide-smash .btn { background: #ff4444; color: #fff; }
-        #slide-smash .btn:hover { background: #fff; color: #121212; }
+        #slide-smash .btn-next-special { background: #ff4444; color: #fff; }
+        #slide-smash .btn-next-special:hover { background: #fff; color: #121212; }
 
         /* Tampilan Berdampingan untuk Slide 5 */
         .grid-layout { 
@@ -242,9 +262,9 @@
         @media (max-width: 768px) {
             .menu-grid { grid-template-columns: 1fr; padding: 0 20px; }
             .grid-layout { grid-template-columns: 1fr; }
-            header { flex-direction: column; gap: 15px; text-align: center; }
-            nav button { margin: 5px; font-size: 14px; }
-            .hero h1 { font-size: 32px; }
+            header { padding: 15px 10px; }
+            nav button { font-size: 13px; margin: 2px; }
+            .hero h1 { font-size: 28px; }
         }
     </style>
 </head>
@@ -275,14 +295,4 @@
             <button class="btn" onclick="changeSlide('slide-lob')">Slide 3: Pukulan Lob</button>
             <button class="btn" onclick="changeSlide('slide-smash')">Slide 4: Pukulan Smash</button>
             <button class="btn" onclick="changeSlide('slide-drop-net')">Slide 5: Drop & Netting</button>
-        </div>
-    </div>
-
-    <!-- SLIDE 2: TEKNIK SERVIS -->
-    <div id="slide-servis" class="slide">
-        <div class="container">
-            <h1>Slide 2: Teknik Dasar Servis</h1>
-            <p>Servis adalah modal awal untuk memulai permainan. Melakukan teknik servis dengan akurat mencegah lawan melakukan serangan instan di awal reli.</p>
             
-            <h2>A. Servis Pendek (Short Serve)</h2>
-    
