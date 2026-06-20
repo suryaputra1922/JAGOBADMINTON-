@@ -13,7 +13,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Latar Belakang Lapangan Badminton Estetik (Pasti Muncul) */
+        /* Latar Belakang Lapangan Badminton SVG */
         body {
             background-color: #0d1b2a;
             background-image: 
@@ -29,34 +29,35 @@
             overflow: hidden;
         }
 
-        /* Wadah Presentasi Modern */
+        /* Wadah Presentasi Utama */
         .presentation-container {
-            position: relative;
             width: 85%;
-            max-width: 900px;
+            max-width: 800px;
             height: 550px;
-            background: rgba(255, 255, 255, 0.07);
+            background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border-radius: 20px;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.15);
-            overflow: hidden;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* Struktur Slide */
-        .slide {
-            display: none;
-            position: absolute;
+        /* Area Konten Slide */
+        .slide-content {
             width: 100%;
-            height: 100%;
-            padding: 45px;
+            flex-grow: 1;
+            display: none;
             text-align: center;
         }
 
-        .slide.active {
+        .slide-content.active {
             display: block;
-            animation: fadeIn 0.6s ease-out;
+            animation: fadeIn 0.5s ease-out;
         }
 
         @keyframes fadeIn {
@@ -65,38 +66,37 @@
         }
 
         h1 {
-            font-size: 2.4rem;
+            font-size: 2.2rem;
             color: #00ffcc;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-transform: uppercase;
             text-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
-            letter-spacing: 1px;
         }
 
         p {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             line-height: 1.6;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             color: #e0e0e0;
+            min-height: 80px;
         }
 
-        /* Frame Ilustrasi Menggantikan Gambar Luar */
+        /* Animasi Kotak Gambar Bergerak */
         .image-box {
             display: inline-block;
-            width: 280px;
-            height: 180px;
+            width: 260px;
+            height: 160px;
             background: rgba(0, 255, 204, 0.1);
             border: 2px dashed #00ffcc;
             border-radius: 12px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
             animation: floating 3.5s ease-in-out infinite;
-            overflow: hidden;
         }
 
         .image-box svg {
             width: 100%;
             height: 100%;
-            padding: 20px;
+            padding: 15px;
         }
 
         @keyframes floating {
@@ -105,37 +105,50 @@
             100% { transform: translateY(0px); }
         }
 
-        /* Navigasi */
+        /* Bar Navigasi Bagian Bawah (Pasti Bisa Diklik) */
+        .controls-bar {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 15px;
+        }
+
         .nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 15px;
+            background: #00ffcc;
+            color: #111;
+            border: none;
+            padding: 12px 30px;
             cursor: pointer;
-            font-size: 1.3rem;
-            border-radius: 50%;
-            transition: all 0.3s;
-            z-index: 10;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0, 255, 204, 0.4);
         }
 
         .nav-btn:hover {
-            background: #00ffcc;
-            color: #111;
-            border-color: #00ffcc;
-            box-shadow: 0 0 15px rgba(0, 255, 204, 0.6);
+            background: #ffffff;
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.6);
+            transform: scale(1.05);
         }
 
-        .prev { left: 25px; }
-        .next { right: 25px; }
+        .nav-btn:active {
+            transform: scale(0.95);
+        }
 
+        .slide-number {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #00ffcc;
+        }
+
+        /* Kontrol Audio */
         .audio-control {
             position: absolute;
             top: 20px;
             right: 25px;
-            z-index: 20;
         }
         
         .audio-control audio {
@@ -146,21 +159,21 @@
 </head>
 <body>
 
-    <!-- Musik Latar (Menggunakan contoh audio publik terpercaya) -->
+    <!-- Musik Latar Instrumentalia -->
     <div class="audio-control">
         <audio id="bgMusic" controls autoplay loop>
             <source src="https://soundhelix.com" type="audio/mpeg">
         </audio>
     </div>
 
+    <!-- Kontainer Presentasi -->
     <div class="presentation-container">
         
         <!-- Slide 1: Judul Utama -->
-        <div class="slide active">
+        <div class="slide-content active">
             <h1>Jago Badminton</h1>
-            <p>Selamat datang di panduan kilat menguasai olahraga bulu tangkis. Mari kita pelajari 5 teknik dasar yang wajib dikuasai oleh setiap pemain pemula agar bisa bermain seperti profesional!</p>
+            <p>Selamat datang di panduan menguasai teknik bulu tangkis. Mari kita pelajari 5 teknik dasar yang wajib dikuasai oleh pemain pemula agar bisa bertanding dengan hebat!</p>
             <div class="image-box">
-                <!-- Ikon Raket & Kok -->
                 <svg viewBox="0 0 64 64" fill="none" stroke="#00ffcc" stroke-width="2">
                     <circle cx="25" cy="25" r="15"/>
                     <path d="M 25,10 L 25,40 M 10,25 L 40,25 M 14,14 L 36,36 M 14,36 L 36,14"/>
@@ -171,11 +184,10 @@
         </div>
 
         <!-- Slide 2: Teknik 1 -->
-        <div class="slide">
+        <div class="slide-content">
             <h1>1. Teknik Memegang Raket</h1>
-            <p>Kunci utama permainan ada pada pegangan raket. Kuasai teknik <i>Forehand Grip</i> (seperti menjabat tangan) dan <i>Backhand Grip</i> (ibu jari menekan rata pada permukaan gagang yang lebar).</p>
+            <p>Kunci utama permainan ada pada genggaman. Kuasai teknik <i>Forehand Grip</i> (seperti menjabat tangan) dan <i>Backhand Grip</i> (ibu jari menekan permukaan gagang yang lebar).</p>
             <div class="image-box">
-                <!-- Ikon Pegangan Tangan -->
                 <svg viewBox="0 0 64 64" fill="none" stroke="#00ffcc" stroke-width="2">
                     <rect x="25" y="5" width="14" height="50" rx="3"/>
                     <path d="M 15,20 C 20,20 25,25 25,30 M 15,28 C 20,28 25,33 25,38 M 15,36 C 20,36 25,41 25,46"/>
@@ -184,11 +196,10 @@
         </div>
 
         <!-- Slide 3: Teknik 2 -->
-        <div class="slide">
+        <div class="slide-content">
             <h1>2. Sikap Berdiri (Stance)</h1>
-            <p>Posisi tubuh yang benar menentukan kecepatan reaksi Anda. Selalu tekuk sedikit lutut Anda, buka kaki selebar bahu, dan pastikan berat badan bertumpu pada ujung kaki agar mudah bergerak.</p>
+            <p>Posisi tubuh menentukan kecepatan reaksi. Selalu tekuk sedikit lutut Anda, buka kaki selebar bahu, dan pastikan berat badan bertumpu pada ujung kaki depan agar siap bergerak cepat.</p>
             <div class="image-box">
-                <!-- Ikon Posisi Siap Tubuh -->
                 <svg viewBox="0 0 64 64" fill="none" stroke="#00ffcc" stroke-width="2">
                     <circle cx="32" cy="15" r="6"/>
                     <path d="M 20,28 L 44,28 M 32,21 L 32,40 L 22,55 M 32,40 L 42,55"/>
@@ -197,11 +208,10 @@
         </div>
 
         <!-- Slide 4: Teknik 3 -->
-        <div class="slide">
+        <div class="slide-content">
             <h1>3. Kerja Kaki (Footwork)</h1>
-            <p>Footwork yang lincah membuat Anda bisa menjangkau seluruh area lapangan dengan efektif. Atur langkah kaki Anda agar selalu seimbang saat mengejar kok ke depan, samping, maupun belakang.</p>
+            <p>Footwork yang lincah membuat Anda bisa menjangkau seluruh lapangan. Atur langkah kaki agar posisi tubuh selalu seimbang saat mengejar kok ke depan, samping, maupun belakang.</p>
             <div class="image-box">
-                <!-- Ikon Langkah Kaki Bergerak -->
                 <svg viewBox="0 0 64 64" fill="none" stroke="#00ffcc" stroke-width="2">
                     <path d="M 20,45 C 20,35 30,35 30,45 L 25,55 Z M 44,25 C 44,15 54,15 54,25 L 49,35 Z"/>
                     <path d="M 25,20 A 10,10 0 0,1 40,15" stroke-dasharray="4"/>
@@ -210,11 +220,10 @@
         </div>
 
         <!-- Slide 5: Teknik 4 -->
-        <div class="slide">
+        <div class="slide-content">
             <h1>4. Servis (Serve)</h1>
-            <p>Servis adalah modal awal untuk meraih poin. Pelajari servis pendek (biasanya menggunakan backhand untuk permainan ganda) dan servis panjang tinggi (menggunakan forehand untuk permainan tunggal).</p>
+            <p>Servis adalah modal awal meraih poin. Pelajari servis pendek (menggunakan backhand untuk ganda) dan servis panjang tinggi (menggunakan forehand melambung tinggi untuk tunggal).</p>
             <div class="image-box">
-                <!-- Ikon Lintasan Servis -->
                 <svg viewBox="0 0 64 64" fill="none" stroke="#00ffcc" stroke-width="2">
                     <path d="M 10,50 Q 32,10 54,35" stroke-dasharray="2"/>
                     <circle cx="10" cy="50" r="3" fill="#00ffcc"/>
@@ -224,11 +233,10 @@
         </div>
 
         <!-- Slide 6: Teknik 5 -->
-        <div class="slide">
+        <div class="slide-content">
             <h1>5. Pukulan Smash</h1>
-            <p>Ini adalah pukulan menyerang utama untuk mematikan lawan. Lakukan lompatan, ayunkan raket sekuat tenaga dari atas ke bawah, dan arahkan kok menukik tajam ke area kosong lawan.</p>
+            <p>Ini adalah pukulan menyerang utama untuk mematikan lawan. Lakukan lompatan tinggi, ayunkan raket sekuat tenaga, dan arahkan kok menukik tajam ke area kosong lapangan lawan.</p>
             <div class="image-box">
-                <!-- Ikon Smash Menukik Tajam -->
                 <svg viewBox="0 0 64 64" fill="none" stroke="#00ffcc" stroke-width="2">
                     <path d="M 15,15 L 45,45 M 45,45 L 35,45 M 45,45 L 45,35" stroke-width="3"/>
                     <circle cx="12" cy="12" r="4" fill="#00ffcc"/>
@@ -236,19 +244,19 @@
             </div>
         </div>
 
-        <!-- Navigasi Panah -->
-        <button class="nav-btn prev" onclick="changeSlide(-1)">&#10094;</button>
-        <button class="nav-btn next" onclick="changeSlide(1)">&#10095;</button>
+        <!-- Bar Kontrol Navigasi Baru -->
+        <div class="controls-bar">
+            <button class="nav-btn" onclick="changeSlide(-1)">KEMBALI</button>
+            <div class="slide-number" id="slideNum">1 / 6</div>
+            <button class="nav-btn" onclick="changeSlide(1)">LANJUT</button>
+        </div>
+
     </div>
 
+    <!-- Sistem JavaScript Baru yang Presisi -->
     <script>
         let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
+        const slides = document.querySelectorAll('.slide-content');
+        const slideNumDisplay = document.getElementById('slideNum');
 
-        function changeSlide(direction) {
-            slides[currentSlide].classList.remove('active');
-            currentSlide += direction;
-            
-            if (currentSlide >= slides.length) {
-                currentSlide = 0;
-                    
+    
