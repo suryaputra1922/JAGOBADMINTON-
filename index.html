@@ -32,13 +32,12 @@
             background-color: #ffffff;
             border-radius: 15px;
             padding: 35px;
-            /* Efek Bayangan Emas Lembut */
             box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
             display: none;
             flex-direction: column;
             justify-content: space-between;
             position: relative;
-            border: 3px solid #d4af37; /* Warna Emas Utama */
+            border: 3px solid #d4af37;
         }
 
         .slide-container.active {
@@ -55,7 +54,7 @@
             height: 80%;
         }
 
-        /* Layout Khusus Slide Judul */
+        /* Layout Khusus Slide Utama */
         .slide-container.center-layout .slide-content {
             display: flex;
             flex-direction: column;
@@ -80,7 +79,7 @@
             margin-bottom: 12px;
         }
 
-        /* Warna Teks Deskripsi: Abu-abu Gelap ke Gelap */
+        /* Warna Teks Deskripsi */
         p {
             font-size: 1rem;
             line-height: 1.5;
@@ -88,7 +87,7 @@
         }
 
         strong {
-            color: #b8860b; /* Penekanan teks penting pakai warna emas */
+            color: #b8860b;
         }
 
         /* Bingkai Gambar */
@@ -121,6 +120,7 @@
             margin-top: 20px;
             display: flex;
             gap: 15px;
+            z-index: 10; /* Memastikan tombol tidak tertutup elemen lain */
         }
 
         /* Tombol Utama: Warna Emas */
@@ -248,4 +248,68 @@
 
     <div class="slide-container">
         <div class="slide-content">
-            <img class="slide-image" src="gambar/dropshot.jpg" alt="Puk
+            <img class="slide-image" src="gambar/dropshot.jpg" alt="Pukulan Dropshot">
+            <div>
+                <h2>5. Pukulan Dropshot</h2>
+                <p>
+                    Jika smash mengandalkan kekuatan, dropshot mengandalkan kecerdikan.<br><br>
+                    Teknik ini dilakukan dengan gerakan menipu seperti smash, namun di detik terakhir raket hanya menyentuh kok dengan halus agar jatuh tipis di dekat net lawan. Ampuh mengecoh lawan yang terlanjur mundur.
+                </p>
+            </div>
+        </div>
+        <div class="audio-container">
+            <audio controls src="audio/dropshot.mp3"></audio>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button id="prevBtn" onclick="changeSlide(-1)">Sebelumnya</button>
+        <button id="nextBtn" onclick="changeSlide(1)">Selanjutnya</button>
+    </div>
+
+    <div class="slide-number" id="slideNum"></div>
+
+    <script>
+        let currentSlide = 0;
+        let slides, prevBtn, nextBtn, slideNum;
+
+        // Fungsi ini dipanggil setelah seluruh halaman web selesai dimuat (anti-error)
+        window.onload = function() {
+            slides = document.querySelectorAll('.slide-container');
+            prevBtn = document.getElementById('prevBtn');
+            nextBtn = document.getElementById('nextBtn');
+            slideNum = document.getElementById('slideNum');
+            
+            updateUI();
+        };
+
+        function updateUI() {
+            if (!slides || !prevBtn || !nextBtn || !slideNum) return;
+
+            // Atur tombol aktif/nonaktif
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === slides.length - 1;
+            
+            // Perbarui teks nomor halaman
+            slideNum.innerText = `Slide ${currentSlide + 1} dari ${slides.length}`;
+
+            // Reset semua audio jika berpindah slide
+            const allAudios = document.querySelectorAll('audio');
+            allAudios.forEach(audio => {
+                audio.pause();
+                audio.currentTime = 0;
+            });
+        }
+
+        function changeSlide(direction) {
+            if (!slides) return;
+            
+            slides[currentSlide].classList.remove('active');
+            currentSlide += direction;
+            slides[currentSlide].classList.add('active');
+
+            updateUI();
+        }
+    </script>
+</body>
+</html>
