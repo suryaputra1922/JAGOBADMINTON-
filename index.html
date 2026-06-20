@@ -41,12 +41,12 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* Mengunci Semua Slide Supaya Tersembunyi */
+        /* Menyembunyikan Slide yang Tidak Aktif */
         .halaman {
             display: none;
         }
 
-        /* Hanya Tampilkan yang Memiliki Class .aktif (Mencegah Teks Menumpuk) */
+        /* Hanya Tampilkan yang Memiliki Class .aktif */
         .halaman.aktif {
             display: block;
         }
@@ -67,18 +67,24 @@
             min-height: 70px;
         }
 
-        /* Desain Foto Asli Bergerak Melayang */
-        .gambar-realistis {
+        /* Desain Frame Gambar Custom */
+        .wadah-desain {
             display: inline-block;
             width: 100%;
             max-width: 320px;
             height: 200px;
-            object-fit: cover;
+            background: #0b132b;
             border: 2px solid #00ffcc;
             border-radius: 10px;
             margin-bottom: 20px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
             animation: melayang 3.5s ease-in-out infinite;
+            overflow: hidden;
+        }
+
+        .wadah-desain svg {
+            width: 100%;
+            height: 100%;
         }
 
         @keyframes melayang {
@@ -145,84 +151,87 @@
         <div class="halaman aktif">
             <h1>Jago Badminton</h1>
             <p>Selamat datang di panduan menguasai teknik bulu tangkis. Mari kita pelajari 5 teknik dasar yang wajib dikuasai oleh pemain pemula agar bisa bertanding dengan hebat!</p>
-            <img src="https://picsum.photos" class="gambar-realistis" alt="Raket dan Kok">
+            <div class="wadah-desain">
+                <!-- Gambar Siluet Lapangan dan Raket -->
+                <svg viewBox="0 0 320 200" xmlns="http://w3.org">
+                    <rect width="320" height="200" fill="#152238"/>
+                    <path d="M 20,20 L 300,20 L 300,180 L 20,180 Z M 20,100 L 300,100 M 160,20 L 160,180" fill="none" stroke="#00ffcc" stroke-width="2" stroke-opacity="0.4"/>
+                    <circle cx="160" cy="100" r="25" fill="none" stroke="#00ffcc" stroke-width="2"/>
+                    <path d="M 120,130 L 150,100 L 200,50" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+                    <circle cx="205" cy="45" r="4" fill="#00ffcc"/>
+                </svg>
+            </div>
         </div>
 
         <!-- ================= SLIDE 2 ================= -->
         <div class="halaman">
             <h1>1. Memegang Raket (Grip)</h1>
             <p>Kunci utama permainan ada pada genggaman. Kuasai teknik Forehand Grip (seperti bersalaman) dan Backhand Grip (ibu jari menekan rata pada gagang raket).</p>
-            <img src="https://picsum.photos" class="gambar-realistis" alt="Memegang Raket">
+            <div class="wadah-desain">
+                <!-- Gambar Genggaman Raket -->
+                <svg viewBox="0 0 320 200" xmlns="http://w3.org">
+                    <rect width="320" height="200" fill="#1a2a6c"/>
+                    <rect x="140" y="40" width="40" height="130" rx="5" fill="#f4a261"/>
+                    <rect x="135" y="140" width="50" height="25" fill="#e76f51" rx="2"/>
+                    <path d="M 110,70 Q 140,70 150,80 M 110,90 Q 140,90 150,100" stroke="#ffffff" stroke-width="3" fill="none"/>
+                    <text x="160" y="30" fill="#00ffcc" font-size="14" text-anchor="middle" font-weight="bold">HAND GRIP</text>
+                </svg>
+            </div>
         </div>
 
         <!-- ================= SLIDE 3 ================= -->
         <div class="halaman">
             <h1>2. Sikap Berdiri (Stance)</h1>
             <p>Posisi tubuh menentukan kecepatan reaksi. Selalu tekuk sedikit lutut Anda, buka kaki selebar bahu, dan bertumpu pada ujung kaki agar siap bergerak ke segala arah.</p>
-            <img src="https://picsum.photos" class="gambar-realistis" alt="Posisi Siap Bermain">
+            <div class="wadah-desain">
+                <!-- Gambar Posisi Tubuh Siap -->
+                <svg viewBox="0 0 320 200" xmlns="http://w3.org">
+                    <rect width="320" height="200" fill="#2d3748"/>
+                    <circle cx="160" cy="50" r="15" fill="#00ffcc"/>
+                    <path d="M 160,65 L 160,120 L 130,170 M 160,120 L 190,170" stroke="#00ffcc" stroke-width="6" stroke-linecap="round"/>
+                    <path d="M 120,85 L 160,75 L 200,85" stroke="#ffffff" stroke-width="5" stroke-linecap="round" fill="none"/>
+                    <line x1="100" y1="175" x2="220" y2="175" stroke="#e2e8f0" stroke-width="3"/>
+                </svg>
+            </div>
         </div>
 
         <!-- ================= SLIDE 4 ================= -->
         <div class="halaman">
             <h1>3. Kerja Kaki (Footwork)</h1>
             <p>Footwork yang lincah membuat Anda bisa menjangkau seluruh area lapangan. Atur langkah kaki Anda agar selalu seimbang saat mengejar kok depan maupun belakang.</p>
-            <img src="https://picsum.photos" class="gambar-realistis" alt="Gerakan Kaki Lapangan">
+            <div class="wadah-desain">
+                <!-- Gambar Langkah Kaki Kelincahan -->
+                <svg viewBox="0 0 320 200" xmlns="http://w3.org">
+                    <rect width="320" height="200" fill="#1e3a8a"/>
+                    <path d="M 100,140 C 100,100 140,100 140,140 L 120,160 Z" fill="#00ffcc" opacity="0.8"/>
+                    <path d="M 180,80 C 180,40 220,40 220,80 L 200,100 Z" fill="#ffffff" opacity="0.8"/>
+                    <path d="M 130,110 Q 160,90 190,90" stroke="#00ffcc" stroke-width="3" stroke-dasharray="5" fill="none"/>
+                </svg>
+            </div>
         </div>
 
         <!-- ================= SLIDE 5 ================= -->
-        <div class="halaman">
+        <div id="slide5" class="halaman">
             <h1>4. Teknik Servis (Serve)</h1>
             <p>Servis adalah modal awal untuk memulai permainan dan meraih poin. Pelajari servis pendek (backhand) untuk ganda dan servis tinggi (forehand) untuk tunggal.</p>
-            <img src="https://picsum.photos" class="gambar-realistis" alt="Melakukan Servis">
+            <div class="wadah-desain">
+                <!-- Gambar Lintasan Servis Bola -->
+                <svg viewBox="0 0 320 200" xmlns="http://w3.org">
+                    <rect width="320" height="200" fill="#312e81"/>
+                    <line x1="160" y1="120" x2="160" y2="200" stroke="#ffffff" stroke-width="3"/>
+                    <path d="M 60,150 Q 160,40 260,130" fill="none" stroke="#00ffcc" stroke-width="3" stroke-dasharray="4"/>
+                    <circle cx="60" cy="150" r="6" fill="#ffffff"/>
+                    <path d="M 255,115 L 260,130 L 245,130" fill="#00ffcc" stroke="#00ffcc" stroke-width="2"/>
+                </svg>
+            </div>
         </div>
 
         <!-- ================= SLIDE 6 ================= -->
         <div class="halaman">
             <h1>5. Pukulan Smash</h1>
             <p>Ini adalah pukulan menyerang utama untuk mematikan lawan. Lakukan lompatan, ayunkan raket sekuat tenaga dari atas, dan arahkan kok menukik tajam ke area lawan.</p>
-            <img src="https://picsum.photos" class="gambar-realistis" alt="Pukulan Smash Keras">
-        </div>
-
-        <!-- Bar Kontrol Navigasi Terpadu -->
-        <div class="tombol-bar">
-            <button class="btn" onclick="gantiSlide(-1)">KEMBALI</button>
-            <div class="nomor-halaman" id="statusHalaman">1 / 6</div>
-            <button class="btn" onclick="gantiSlide(1)">LANJUT</button>
-        </div>
-
-    </div>
-
-    <script>
-        let slideSekarang = 0;
-        const listHalaman = document.querySelectorAll('.halaman');
-        const infoAngka = document.getElementById('statusHalaman');
-
-        function gantiSlide(arah) {
-            // Sembunyikan halaman lama
-            listHalaman[slideSekarang].classList.remove('aktif');
-            
-            // Hitung halaman baru
-            slideSekarang += arah;
-            if (slideSekarang >= listHalaman.length) {
-                slideSekarang = 0;
-            } else if (slideSekarang < 0) {
-                slideSekarang = listHalaman.length - 1;
-            }
-            
-            // Tampilkan halaman baru
-            listHalaman[slideSekarang].classList.add('aktif');
-            
-            // Perbarui teks halaman
-            infoAngka.innerText = (slideSekarang + 1) + " / " + listHalaman.length;
-        }
-
-        // Jalankan audio musik secara aman setelah klik pertama di halaman
-        document.addEventListener('click', () => {
-            const audio = document.getElementById('lagu');
-            if (audio && audio.paused) {
-                audio.play().catch(e => console.log("Audio otomatis ditahan browser"));
-            }
-        }, { once: true });
-    </script>
-</body>
-</html>
+            <div class="wadah-desain">
+                <!-- Gambar Smash Menukik Tajam -->
+                <svg viewBox="0 0 320 200" xmlns="http://w3.org">
+                    <rect width="320" height="200" fill="#4c1d95"/>
+    
