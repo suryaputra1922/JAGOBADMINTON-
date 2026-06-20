@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JADOBADMINTON - Teknik Dasar</title>
+    <style>
+        /* Gaya Dasar & Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Animasi Transisi untuk Efek Hover */
+        header, .card, .video-container {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* --- ANIMASI UTAMA (Keyframes) --- */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Header dengan Animasi Muncul */
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        /* Wadah Konten Utama */
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Desain Audio Player */
+        .audio-section {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Desain Gambar Utama dengan Efek Animasi Denyut (Pulse) */
+        .image-banner {
+            width: 100%;
+            max-height: 350px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            margin-bottom: 30px;
+            animation: pulse 4s infinite ease-in-out;
+        }
+
+        /* Bagian Teknik Dasar (Grid/Cards) */
+        .grid-teknik {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            border-left: 5px solid #2a5298;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+
+        /* Bagian Video Tradisional (Local File) */
+        .video-section {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+        }
+
+        .video-section h2 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        video {
+            width: 100%;
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e3c72;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            margin-top: 50px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>JADOBADMINTON</h1>
+        <p>Kuasai Lapangan dengan Teknik yang Benar</p>
+    </header>
+
+    <div class="container">
+
+        <img src="raket.jpg" alt="Ilustrasi Badminton" class="image-banner">
+
+        <div class="audio-section">
+            <p><strong>Dengarkan Panduan Audio Singkat:</strong></p>
+            <audio controls>
+                <source src="bg-audio.mp3" type="audio/mpeg">
+                Browser kamu tidak mendukung pemutar audio.
+            </audio>
+        </div>
+
+        <h2 style="margin-bottom: 20px; color: #1e3c72; text-align: center;">4 Teknik Dasar Utama</h2>
+        
+        <div class="grid-teknik">
+            <div class="card">
+                <h3>1. Cara Memegang Raket (Grip)</h3>
+                <p>Teknik paling awal yang harus dikuasai. Terdiri dari <em>Forehand Grip</em> (seperti bersalaman) dan <em>Backhand Grip</em> (ibu jari bertumpu pada tangkai raket yang lebar).</p>
+            </div>
+
+            <div class="card">
+                <h3>2. Sikap Berdiri (Footwork)</h3>
+                <p>Gerakan kaki yang lincah adalah kunci untuk mengejar shuttlecock ke segala sudut lapangan. Pastikan posisi tubuh selalu seimbang dan siap bergerak.</p>
+            </div>
+
+            <div class="card">
+                <h3>3. Servis (Service)</h3>
+                <p>Pukulan awal untuk memulai pertandingan. Bisa dilakukan dengan teknik servis pendek (sering digunakan di ganda) atau servis tinggi/panjang (sering digunakan di tunggal).</p>
+            </div>
+
+            <div class="card">
+                <h3>4. Pukulan (Strokes)</h3>
+                <p>Berbagai jenis pukulan utama seperti <em>Lob</em> (melambungkan ke belakang lawan), <em>Drop Shot</em> (menukik tipis di net), dan <em>Smash</em> (pukulan keras menukik tajam untuk mematikan lawan).</p>
+            </div>
+        </div>
+
+        <div class="video-section">
+            <h2>Video Tutorial Teknik Dasar</h2>
+            <div class="video-container">
+                <video controls poster="raket.jpg">
+                    <source src="video-teknik.mp4" type="video/mp4">
+                    Browser kamu tidak mendukung pemutar video.
+                </video>
+            </div>
+            <p style="margin-top: 10px; font-size: 0.85rem; color: #666; text-align: center;">
+                *Klik tombol play pada pemutar video di atas untuk melihat visualisasi gerakan.
+            </p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 JADOBADMINTON. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
