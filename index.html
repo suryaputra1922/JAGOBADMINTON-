@@ -3,306 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jago Badminton - Teknik Dasar</title>
+    <title>Jago Badminton - Beranda</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: #121212; color: #fff; overflow-x: hidden; }
+        header { background: #1f1f1f; padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #ffcc00; }
+        .logo { font-size: 24px; font-weight: bold; color: #ffcc00; animation: bounce 2s infinite; }
+        nav a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: 500; transition: 0.3s; }
+        nav a:hover, nav a.active { color: #ffcc00; }
+        
+        .hero { height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://unsplash.com') center/cover; }
+        .hero h1 { font-size: 50px; margin-bottom: 20px; animation: fadeInDown 1.5s ease; }
+        .hero p { font-size: 20px; color: #ccc; margin-bottom: 30px; animation: fadeInUp 1.5s ease; }
+        .btn { padding: 12px 30px; background: #ffcc00; color: #121212; font-weight: bold; text-decoration: none; border-radius: 5px; transition: 0.3s; animation: pulse 2s infinite; }
+        .btn:hover { background: #fff; }
+        
+        .audio-container { background: #1f1f1f; padding: 15px; text-align: center; border-top: 1px solid #333; }
 
-        /* --- PENGATURAN BACKGROUND: MEWAH & ANIMATIF --- */
-        body {
-            background: radial-gradient(circle at center, #114b30 0%, #082417 70%, #030a07 100%);
-            color: #2c3e50;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Pola Garis Lapangan Abstrak di Background */
-        body::before {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 2px, transparent 2px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 2px, transparent 2px);
-            background-size: 80px 80px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* --- ELEMEN DEKORASI: ANIMASI KOK MELAYANG (SHUTTLECOCK FALL) --- */
-        .bg-deco-shuttle {
-            position: absolute;
-            opacity: 0.04;
-            color: #fff;
-            pointer-events: none;
-            z-index: 1;
-            animation: floatShuttle 12s linear infinite;
-        }
-        .deco-1 { top: -10%; left: 10%; animation-duration: 14s; animation-delay: 0s; }
-        .deco-2 { top: -10%; left: 40%; animation-duration: 18s; animation-delay: 3s; }
-        .deco-3 { top: -10%; left: 80%; animation-duration: 15s; animation-delay: 6s; }
-
-        @keyframes floatShuttle {
-            0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
-            10% { opacity: 0.05; }
-            90% { opacity: 0.05; }
-            100% { transform: translateY(110vh) rotate(360deg) scale(1.2); opacity: 0; }
-        }
-
-        /* Kotak Slide dengan Efek Kaca Transparan Lembut */
-        .slide-container {
-            width: 85%;
-            max-width: 850px;
-            height: 490px;
-            background-color: rgba(255, 255, 255, 0.94); 
-            border-radius: 15px;
-            padding: 25px 35px;
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            z-index: 10;
-            border: 3px solid #d4af37; /* Bingkai Emas */
-            /* Animasi Pendaran Emas Estetik (Pulse Glow) */
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 15px rgba(212, 175, 55, 0.2);
-            animation: goldGlow 4s infinite alternate;
-        }
-
-        @keyframes goldGlow {
-            0% { box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 15px rgba(212, 175, 55, 0.2); }
-            100% { box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 25px rgba(212, 175, 55, 0.4); border-color: #e6ca65; }
-        }
-
-        /* Animasi Transisi Masuk Slide Baru (Mulus & Hidup) */
-        .slide-container.active {
-            display: flex;
-            animation: slideInUp 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-        }
-
-        @keyframes slideInUp {
-            from { opacity: 0; transform: translateY(30px) scale(0.96); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        /* Layout Grid Gambar Slide dan Teks */
-        .slide-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            align-items: center;
-            height: 80%;
-        }
-
-        /* Layout Khusus Slide Judul / Slide Video */
-        .slide-container.center-layout .slide-content {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            text-align: left;
-            height: 100%;
-            align-items: center;
-        }
-
-        /* Judul Utama */
-        h1 {
-            color: #b8860b;
-            font-size: 2.6rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-
-        /* Judul Teknik */
-        h2 {
-            color: #aa7c11;
-            font-size: 1.8rem;
-            margin-bottom: 12px;
-        }
-
-        /* Deskripsi */
-        p {
-            font-size: 1rem;
-            line-height: 1.5;
-            color: #1a252f;
-            font-weight: 500;
-        }
-
-        strong {
-            color: #b8860b;
-            font-weight: 700;
-        }
-
-        /* --- WADAH ILUSTRASI DENGAN EFEK HOVER NYALALAH (GLOW & ZOOM) --- */
-        .slide-image-placeholder {
-            width: 100%;
-            height: 250px;
-            border-radius: 10px;
-            border: 2px solid #cfb53b;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
-        }
-
-        .slide-container.active .slide-image-placeholder:hover {
-            transform: scale(1.04) rotate(1deg);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.3);
-        }
-
-        /* Efek Denyut Halus pada Ikon SVG di dalam Gambar */
-        .slide-image-placeholder svg {
-            animation: svgPulse 3s infinite ease-in-out;
-        }
-
-        @keyframes svgPulse {
-            0%, 100% { transform: scale(1); opacity: 0.9; }
-            50% { transform: scale(1.08); opacity: 1; filter: drop-shadow(0 0 8px rgba(255,255,255,0.6)); }
-        }
-
-        /* Variasi warna wadah agar setiap slide berbeda dan estetik */
-        .bg-grip { background: linear-gradient(135deg, #2b5876 0%, #4e4376 100%); }
-        .bg-footwork { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
-        .bg-servis { background: linear-gradient(135deg, #ff9966 0%, #ff5e62 100%); }
-        .bg-smash { background: linear-gradient(135deg, #f857a6 0%, #ff5858 100%); }
-        .bg-dropshot { background: linear-gradient(135deg, #4da0b0 0%, #d39d38 100%); }
-
-        /* --- FRAME VIDEO YOUTUBE RESPONSIVE --- */
-        .video-wrapper {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; 
-            height: 0;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 2px solid #cfb53b;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Audio Container */
-        .audio-container {
-            width: 100%;
-            margin-top: 10px;
-            display: flex;
-            justify-content: center;
-        }
-
-        audio {
-            width: 100%;
-            max-width: 420px;
-            height: 32px;
-        }
-
-        /* Tombol Navigasi */
-        .navigation {
-            margin-top: 20px;
-            display: flex;
-            gap: 15px;
-            z-index: 10;
-        }
-
-        /* --- TOMBOL PREMIUM DENGAN ANIMASI HOVER --- */
-        button {
-            background: linear-gradient(135deg, #d4af37 0%, #aa7c11 100%);
-            color: white;
-            border: none;
-            padding: 12px 28px;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 6px;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Efek Kilatan Cahaya Berjalan saat Hover (Shine Effect) */
-        button::after {
-            content: '';
-            position: absolute;
-            top: 0; left: -50%;
-            width: 30%; height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
-            transform: skewX(-25deg);
-            transition: 0.75s;
-        }
-
-        button:hover::after {
-            left: 120%;
-        }
-
-        button:hover:not(:disabled) {
-            background: linear-gradient(135deg, #e6ca65 0%, #b8860b 100%);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
-        }
-
-        button:active:not(:disabled) {
-            transform: translateY(-1px);
-        }
-
-        button:disabled {
-            background: #bdc3c7;
-            color: #7f8c8d;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        /* Nomor Slide */
-        .slide-number {
-            margin-top: 15px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: white;
-            background-color: rgba(0, 0, 0, 0.6);
-            padding: 4px 15px;
-            border-radius: 20px;
-            z-index: 10;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
+        /* Animasi CSS */
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
     </style>
 </head>
 <body>
 
-    <svg class="bg-deco-shuttle deco-1" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-        <path d="M12 18a2.5 2.5 0 0 1-2.5-2.5h5A2.5 2.5 0 0 1 12 18z"/>
-        <path d="M9.5 15.5L6 4h12l-3.5 11.5h-5z"/>
-        <path d="M8 9h8M7 6h10"/>
-    </svg>
-    <svg class="bg-deco-shuttle deco-2" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-        <path d="M12 18a2.5 2.5 0 0 1-2.5-2.5h5A2.5 2.5 0 0 1 12 18z"/>
-        <path d="M9.5 15.5L6 4h12l-3.5 11.5h-5z"/>
-    </svg>
-    <svg class="bg-deco-shuttle deco-3" width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-        <path d="M12 18a2.5 2.5 0 0 1-2.5-2.5h5A2.5 2.5 0 0 1 12 18z"/>
-        <path d="M9.5 15.5L6 4h12l-3.5 11.5h-5z"/>
-        <path d="M8 9h8M7 6h10"/>
-    </svg>
+    <header>
+        <div class="logo">🏸 Jago Badminton</div>
+        <nav>
+            <a href="index.html" class="active">Beranda</a>
+            <a href="servis.html">Servis</a>
+            <a href="lob.html">Pukulan Lob</a>
+            <a href="smash.html">Smash</a>
+            <a href="drop-net.html">Drop & Netting</a>
+        </nav>
+    </header>
 
-    <div class="slide-container active center-layout">
-        <div class="slide-content">
-            <div>
-                <h1>Jago Badminton</h1>
-                <p style="font-size: 1.1rem; font-weight: 600;">
-                    Selamat datang di panduan digital "Jago Badminton".<br><br>
-                    Tonton video di
+    <section class="hero">
+        <h1>Kuasai Lapangan, Jadi Juara!</h1>
+        <p>Pelajari 5 teknik dasar badminton esensial untuk meningkatkan performa bermain Anda.</p>
+        <a href="servis.html" class="btn">Mulai Belajar</a>
+    </section>
+
+    <div class="audio-container">
+        <p style="margin-bottom: 5px; color: #ffcc00;">🎵 Musik Latar Website:</p>
+        <audio controls autoplay loop>
+            <source src="assets/audio-bg.mp3" type="audio/mpeg">
+            Browser Anda tidak mendukung elemen audio.
+        </audio>
+    </div>
+
+</body>
+</html>
