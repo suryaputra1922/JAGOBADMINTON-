@@ -12,8 +12,10 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        /* --- PENGATURAN BACKGROUND BARU: ANTI-BLOKIR & MEWAH --- */
         body {
-            position: relative;
+            /* Perpaduan Gradasi Gelap Elegan & Hijau Lapangan Badminton Internasional */
+            background: radial-gradient(circle at center, #114b30 0%, #082417 70%, #030a07 100%);
             color: #2c3e50;
             display: flex;
             flex-direction: column;
@@ -21,30 +23,21 @@
             align-items: center;
             height: 100vh;
             overflow: hidden;
-            background-color: #111;
+            position: relative;
         }
 
-        /* --- KODE BACKGROUND KOLASE ATLET BADMINTON DUNIA --- */
-        .bg-collage {
+        /* Pola Garis Lapangan Abstrak di Background */
+        body::before {
+            content: "";
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            grid-auto-rows: 150px;
-            gap: 2px;
-            z-index: 0;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 2px, transparent 2px);
+            background-size: 80px 80px;
             pointer-events: none;
-            overflow: hidden;
-        }
-
-        .bg-collage img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.5) contrast(1.1); /* Sedikit digelapkan agar tulisan terbaca jelas */
+            z-index: 0;
         }
 
         /* Kotak Slide dengan Efek Kaca Transparan Lembut */
@@ -52,17 +45,16 @@
             width: 85%;
             max-width: 850px;
             height: 490px;
-            background-color: rgba(255, 255, 255, 0.90); 
+            background-color: rgba(255, 255, 255, 0.94); 
             border-radius: 15px;
             padding: 25px 35px;
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
             display: none;
             flex-direction: column;
             justify-content: space-between;
             position: relative;
             z-index: 10;
-            border: 3px solid #d4af37; /* Bingkai Emas Mewah */
-            backdrop-filter: blur(12px); 
+            border: 3px solid #d4af37; /* Bingkai Emas */
         }
 
         .slide-container.active {
@@ -79,7 +71,7 @@
             height: 80%;
         }
 
-        /* Layout Khusus Slide Judul Utama / Slide Video */
+        /* Layout Khusus Slide Judul / Slide Video */
         .slide-container.center-layout .slide-content {
             display: grid;
             grid-template-columns: 1fr 1.2fr;
@@ -91,9 +83,9 @@
         /* Judul Utama */
         h1 {
             color: #b8860b;
-            font-size: 2.5rem;
+            font-size: 2.6rem;
             margin-bottom: 10px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            font-weight: 700;
         }
 
         /* Judul Teknik */
@@ -116,21 +108,31 @@
             font-weight: 700;
         }
 
-        /* Bingkai Gambar Ilustrasi Teknik */
-        .slide-image {
+        /* --- PENGGANTI GAMBAR RUSAK: WADAH ILUSTRASI INDAH --- */
+        .slide-image-placeholder {
             width: 100%;
             height: 250px;
-            object-fit: cover;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             border-radius: 10px;
             border: 2px solid #cfb53b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        /* --- FRAME RESEPONSUR UNTUK VIDEO YOUTUBE --- */
+        /* Variasi warna wadah agar setiap slide berbeda dan estetik */
+        .bg-grip { background: linear-gradient(135deg, #2b5876 0%, #4e4376 100%); }
+        .bg-footwork { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
+        .bg-servis { background: linear-gradient(135deg, #ff9966 0%, #ff5e62 100%); }
+        .bg-smash { background: linear-gradient(135deg, #f857a6 0%, #ff5858 100%); }
+        .bg-dropshot { background: linear-gradient(135deg, #4da0b0 0%, #d39d38 100%); }
+
+        /* --- FRAME VIDEO YOUTUBE RESPONSIVE --- */
         .video-wrapper {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* Rasio 16:9 */
+            padding-bottom: 56.25%; 
             height: 0;
             border-radius: 8px;
             overflow: hidden;
@@ -146,7 +148,7 @@
             height: 100%;
         }
 
-        /* Audio Player Container */
+        /* Audio Container */
         .audio-container {
             width: 100%;
             margin-top: 10px;
@@ -184,7 +186,6 @@
         button:hover {
             background: linear-gradient(135deg, #e6ca65 0%, #b8860b 100%);
             transform: translateY(-2px);
-            box-shadow: 0 7px 18px rgba(0,0,0,0.4);
         }
 
         button:disabled {
@@ -201,7 +202,7 @@
             font-size: 0.95rem;
             font-weight: 600;
             color: white;
-            background-color: rgba(0, 0, 0, 0.75);
+            background-color: rgba(0, 0, 0, 0.6);
             padding: 4px 15px;
             border-radius: 20px;
             z-index: 10;
@@ -215,28 +216,13 @@
 </head>
 <body>
 
-    <div class="bg-collage">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Chou_Tien-Chen_at_2015_Singapore_Open_Super_Series_-_20150410-02.jpg/400px-Chou_Tien-Chen_at_2015_Singapore_Open_Super_Series_-_20150410-02.jpg" alt="Chou Tien Chen">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Lin_Dan_at_2011_Yonex_IFB_02.jpg/400px-Lin_Dan_at_2011_Yonex_IFB_02.jpg" alt="Lin Dan">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Lee_Chong_Wei_at_2011_Yonex_IFB_02.jpg/400px-Lee_Chong_Wei_at_2011_Yonex_IFB_02.jpg" alt="Lee Chong Wei">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Jonatan_Christie_at_Indonesia_Open_2018.jpg/400px-Jonatan_Christie_at_Indonesia_Open_2018.jpg" alt="Jonatan Christie">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Viktor_Axelsen_Total_BWF_World_Championships_2017_1.jpg/400px-Viktor_Axelsen_Total_BWF_World_Championships_2017_1.jpg" alt="Viktor Axelsen">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Tai_Tzu-ying_at_2014_Singapore_Open.jpg/400px-Tai_Tzu-ying_at_2014_Singapore_Open.jpg" alt="Tai Tzu Ying">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Carolina_Mar%C3%ADn_Rio_2016.jpg/400px-Carolina_Mar%C3%ADn_Rio_2016.jpg" alt="Carolina Marin">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Shon_Seung-mo.jpg/400px-Shon_Seung-mo.jpg" alt="Atlet Badminton">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Chen_Long_at_2015_Singapore_Open.jpg/400px-Chen_Long_at_2015_Singapore_Open.jpg" alt="Chen Long">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Srikant_at_Singapore_Open_2015_-_20150410.jpg/400px-Srikant_at_Singapore_Open_2015_-_20150410.jpg" alt="Srikanth">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Taufik_Hidayat_at_2011_Yonex_IFB_02.jpg/400px-Taufik_Hidayat_at_2011_Yonex_IFB_02.jpg" alt="Taufik Hidayat">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Peter_Gade_at_2011_Yonex_IFB.jpg/400px-Peter_Gade_at_2011_Yonex_IFB.jpg" alt="Peter Gade">
-    </div>
-
     <div class="slide-container active center-layout">
         <div class="slide-content">
             <div>
                 <h1>Jago Badminton</h1>
                 <p style="font-size: 1.1rem; font-weight: 600;">
                     Selamat datang di panduan digital "Jago Badminton".<br><br>
-                    Tonton video di samping untuk ringkasan materi, lalu klik tombol di bawah untuk mempelajari 5 teknik dasar secara detail!
+                    Tonton video di samping untuk ringkasan materi permainan, lalu klik tombol di bawah untuk mempelajari teknik dasar secara detail!
                 </p>
             </div>
             <div class="video-wrapper">
@@ -250,7 +236,12 @@
 
     <div class="slide-container">
         <div class="slide-content">
-            <img class="slide-image" src="grip.jpg" alt="Teknik Grip Memegang Raket">
+            <div class="slide-image-placeholder bg-grip">
+                <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5">
+                    <ellipse cx="12" cy="7" rx="5" ry="6"/>
+                    <path d="M12 13v7M10 20h4M9 7h6M12 2v10M12 7m-5 0a5 5 0 1 0 10 0 5 5 0 1 0 -10 0" stroke-width="0.5" stroke-dasharray="1 1"/>
+                </svg>
+            </div>
             <div>
                 <h2>1. Memegang Raket (Grip)</h2>
                 <p>
@@ -267,7 +258,12 @@
 
     <div class="slide-container">
         <div class="slide-content">
-            <img class="slide-image" src="footwork.jpg" alt="Teknik Footwork Langkah Kaki">
+            <div class="slide-image-placeholder bg-footwork">
+                <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5">
+                    <path d="M6 18c0-2-1-3-2-4s-1-3 0-5 2-2 3-1 1 3 0 5-1 3-1 5z" fill="rgba(255,255,255,0.2)"/>
+                    <path d="M18 14c0-2 1-3 2-4s1-3 0-5-2-2-3-1-1 3 0 5 1 3 1 5z" fill="rgba(255,255,255,0.4)"/>
+                </svg>
+            </div>
             <div>
                 <h2>2. Pergerakan Kaki (Footwork)</h2>
                 <p>
@@ -283,7 +279,13 @@
 
     <div class="slide-container">
         <div class="slide-content">
-            <img class="slide-image" src="servis.jpg" alt="Teknik Servis Bulu Tangkis">
+            <div class="slide-image-placeholder bg-servis">
+                <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5">
+                    <path d="M12 18a2.5 2.5 0 0 1-2.5-2.5h5A2.5 2.5 0 0 1 12 18z" fill="#fff"/>
+                    <path d="M9.5 15.5L7 6h10l-2.5 9.5h-5z"/>
+                    <path d="M8.5 10h7M8 7h8"/>
+                </svg>
+            </div>
             <div>
                 <h2>3. Teknik Servis (Serve)</h2>
                 <p>
@@ -300,7 +302,11 @@
 
     <div class="slide-container">
         <div class="slide-content">
-            <img class="slide-image" src="smash.jpg" alt="Pukulan Jumping Smash Tajam">
+            <div class="slide-image-placeholder bg-smash">
+                <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="rgba(255,255,255,0.3)"/>
+                </svg>
+            </div>
             <div>
                 <h2>4. Pukulan Smash</h2>
                 <p>
@@ -316,7 +322,13 @@
 
     <div class="slide-container">
         <div class="slide-content">
-            <img class="slide-image" src="dropshot.jpg" alt="Pukulan Dropshot Tipis di Net">
+            <div class="slide-image-placeholder bg-dropshot">
+                <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5">
+                    <path d="M2 14h20M2 18h20M5 14v5M12 14v5M19 14v5" stroke-width="1"/>
+                    <circle cx="12" cy="8" r="2" fill="#fff"/>
+                    <path d="M12 8l4-5" stroke-dasharray="2 2"/>
+                </svg>
+            </div>
             <div>
                 <h2>5. Pukulan Dropshot</h2>
                 <p>
@@ -358,7 +370,6 @@
             
             slideNum.innerText = `Slide ${currentSlide + 1} dari ${slides.length}`;
 
-            // Reset audio setiap kali berpindah slide
             const allAudios = document.querySelectorAll('audio');
             allAudios.forEach(audio => {
                 audio.pause();
