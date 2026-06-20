@@ -12,9 +12,16 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Background Utama: Gradasi Silver Premium */
+        /* --- PENGATURAN BACKGROUND BELAKANG --- */
         body {
-            background: linear-gradient(135deg, #bdc3c7 0%, #eef2f3 100%);
+            /* Tempel/Paste link gambar yang sudah kamu copy di antara tanda petik di bawah ini */
+            background-image: url('PASTE_LINK_GAMBAR_DI_SINI'); 
+            
+            background-size: cover;          /* Gambar menutupi seluruh layar browser */
+            background-position: center;     /* Posisi gambar tepat di tengah */
+            background-repeat: no-repeat;    /* Gambar tidak akan mengulang (pecah/tile) */
+            background-attachment: fixed;    /* Background terkunci (tidak ikut bergerak saat di-scroll) */
+            
             color: #2c3e50;
             display: flex;
             flex-direction: column;
@@ -24,20 +31,21 @@
             overflow: hidden;
         }
 
-        /* Kotak Slide: Perpaduan Silver & Border Emas */
+        /* Kotak Slide: Dibuat transparan (0.85) agar background belakang terlihat samar-samar */
         .slide-container {
             width: 85%;
             max-width: 850px;
             height: 480px;
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.85); 
             border-radius: 15px;
             padding: 35px;
-            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
             display: none;
             flex-direction: column;
             justify-content: space-between;
             position: relative;
             border: 3px solid #d4af37;
+            backdrop-filter: blur(5px); /* Memberikan efek blur estetik pada background di belakang kotak */
         }
 
         .slide-container.active {
@@ -54,7 +62,7 @@
             height: 80%;
         }
 
-        /* Layout Khusus Slide Utama */
+        /* Layout Khusus Slide Judul */
         .slide-container.center-layout .slide-content {
             display: flex;
             flex-direction: column;
@@ -84,13 +92,14 @@
             font-size: 1rem;
             line-height: 1.5;
             color: #34495e;
+            font-weight: 500;
         }
 
         strong {
             color: #b8860b;
         }
 
-        /* Bingkai Gambar */
+        /* Bingkai Gambar Dalam Slide */
         .slide-image {
             width: 100%;
             height: 250px;
@@ -120,7 +129,6 @@
             margin-top: 20px;
             display: flex;
             gap: 15px;
-            z-index: 10; /* Memastikan tombol tidak tertutup elemen lain */
         }
 
         /* Tombol Utama: Warna Emas */
@@ -133,14 +141,14 @@
             font-weight: 600;
             border-radius: 5px;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             transition: all 0.3s;
         }
 
         button:hover {
             background: linear-gradient(135deg, #e6ca65 0%, #b8860b 100%);
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
         }
 
         button:disabled {
@@ -156,7 +164,10 @@
             margin-top: 15px;
             font-size: 0.9rem;
             font-weight: 600;
-            color: #7f8c8d;
+            color: #4a5568;
+            background-color: rgba(255, 255, 255, 0.6);
+            padding: 2px 10px;
+            border-radius: 10px;
         }
 
         @keyframes fadeIn {
@@ -170,7 +181,7 @@
     <div class="slide-container active center-layout">
         <div class="slide-content">
             <h1>Jago Badminton</h1>
-            <p style="font-size: 1.2rem; font-weight: 500;">
+            <p style="font-size: 1.2rem; font-weight: 600;">
                 Selamat datang di panduan digital "Jago Badminton". <br>
                 Mari pelajari 5 teknik dasar penting untuk menguasai lapangan bulu tangkis!
             </p>
@@ -273,7 +284,6 @@
         let currentSlide = 0;
         let slides, prevBtn, nextBtn, slideNum;
 
-        // Fungsi ini dipanggil setelah seluruh halaman web selesai dimuat (anti-error)
         window.onload = function() {
             slides = document.querySelectorAll('.slide-container');
             prevBtn = document.getElementById('prevBtn');
@@ -286,14 +296,11 @@
         function updateUI() {
             if (!slides || !prevBtn || !nextBtn || !slideNum) return;
 
-            // Atur tombol aktif/nonaktif
             prevBtn.disabled = currentSlide === 0;
             nextBtn.disabled = currentSlide === slides.length - 1;
             
-            // Perbarui teks nomor halaman
             slideNum.innerText = `Slide ${currentSlide + 1} dari ${slides.length}`;
 
-            // Reset semua audio jika berpindah slide
             const allAudios = document.querySelectorAll('audio');
             allAudios.forEach(audio => {
                 audio.pause();
