@@ -5,258 +5,262 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jago Badminton</title>
     <style>
-        /* Desain Dasar */
+        /* Pengaturan Dasar */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
         }
 
-        /* Latar Belakang Lapangan Badminton SVG */
+        /* Latar Belakang Lapangan Badminton (Menggunakan Gambar Garis Pasti Muncul) */
         body {
-            background-color: #0d1b2a;
+            background-color: #0b132b;
             background-image: 
-                linear-gradient(rgba(13, 27, 42, 0.85), rgba(27, 38, 59, 0.9)),
-                url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='100%25' height='100%25' viewBox='0 0 800 600'%3E%3Cdefs%3E%3Cstyle%3E.line%7Bfill:none;stroke:rgba(255,255,255,0.15);stroke-width:3;%7D%3C/style%3E%3C/defs%3E%3Crect width='800' height='600' fill='%23112233'/%3E%3Cpath class='line' d='M 50,50 L 750,50 L 750,550 L 50,550 Z' /%3E%3Cpath class='line' d='M 50,300 L 750,300' /%3E%3Cpath class='line' d='M 400,50 L 400,550' /%3E%3Cpath class='line' d='M 50,90 L 750,90' /%3E%3Cpath class='line' d='M 50,510 L 750,510' /%3E%3Cpath class='line' d='M 110,50 L 110,550' /%3E%3Cpath class='line' d='M 690,50 L 690,550' /%3E%3C/svg%3E");
+                linear-gradient(rgba(11, 19, 43, 0.8), rgba(28, 37, 65, 0.85)),
+                url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='100%25' height='100%25' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%230b132b'/%3E%3Cpath d='M 50,50 L 750,50 L 750,550 L 50,550 Z M 50,300 L 750,300 M 400,50 L 400,550' fill='none' stroke='rgba(0,255,204,0.15)' stroke-width='4'/%3E%3C/svg%3E");
             background-size: cover;
             background-position: center;
-            color: #fff;
+            color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            padding: 20px;
         }
 
-        /* Wadah Presentasi Utama */
-        .presentation-container {
-            width: 85%;
-            max-width: 800px;
-            height: 550px;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* Area Konten Slide */
-        .slide-content {
+        /* Kotak Presentasi Sederhana - Tanpa Lapisan Yang Menghalangi Klik */
+        .slide-box {
             width: 100%;
-            flex-grow: 1;
-            display: none;
+            max-width: 700px;
+            background: #1c2541;
+            border: 3px solid #00ffcc;
+            border-radius: 15px;
+            padding: 30px;
             text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .slide-content.active {
+        /* Sistem Slide Menggunakan Class Sederhana */
+        .halaman {
+            display: none;
+        }
+
+        /* Hanya Tampilkan Slide yang Aktif */
+        .halaman.aktif {
             display: block;
-            animation: fadeIn 0.5s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        /* Judul Slide */
         h1 {
-            font-size: 2.2rem;
             color: #00ffcc;
+            font-size: 2rem;
             margin-bottom: 15px;
             text-transform: uppercase;
-            text-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
         }
 
+        /* Isi Teks Deskripsi */
         p {
             font-size: 1.1rem;
             line-height: 1.6;
-            margin-bottom: 20px;
             color: #e0e0e0;
-            min-height: 80px;
+            margin-bottom: 25px;
         }
 
-        /* Animasi Kotak Gambar Bergerak */
-        .image-box {
+        /* Animasi Kotak Gambar Bergerak Naik Turun */
+        .wadah-gambar {
             display: inline-block;
-            width: 260px;
-            height: 160px;
+            width: 200px;
+            height: 150px;
             background: rgba(0, 255, 204, 0.1);
-            border: 2px dashed #00ffcc;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            animation: floating 3.5s ease-in-out infinite;
+            border: 2px solid #00ffcc;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            animation: melayang 3s ease-in-out infinite;
         }
 
-        .image-box svg {
+        .wadah-gambar svg {
             width: 100%;
             height: 100%;
-            padding: 15px;
+            padding: 20px;
         }
 
-        @keyframes floating {
+        @keyframes melayang {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-12px); }
             100% { transform: translateY(0px); }
         }
 
-        /* Bar Navigasi Bagian Bawah (Pasti Bisa Diklik) */
-        .controls-bar {
-            width: 100%;
+        /* Bar Navigasi Tombol di Bawah */
+        .tombol-bar {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            gap: 30px;
-            margin-top: 15px;
+            border-top: 2px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
         }
 
-        .nav-btn {
-            background: #00ffcc;
-            color: #111;
+        /* Desain Tombol yang Besar dan Pasti Bisa Diklik */
+        .btn {
+            background-color: #00ffcc;
+            color: #0b132b;
             border: none;
-            padding: 12px 30px;
-            cursor: pointer;
+            padding: 12px 25px;
             font-size: 1rem;
             font-weight: bold;
-            border-radius: 25px;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 15px rgba(0, 255, 204, 0.4);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
         }
 
-        .nav-btn:hover {
-            background: #ffffff;
-            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.6);
-            transform: scale(1.05);
+        .btn:hover {
+            background-color: #ffffff;
         }
 
-        .nav-btn:active {
-            transform: scale(0.95);
-        }
-
-        .slide-number {
+        .nomor-halaman {
             font-size: 1.1rem;
             font-weight: bold;
             color: #00ffcc;
         }
 
-        /* Kontrol Audio */
-        .audio-control {
-            position: absolute;
-            top: 20px;
-            right: 25px;
+        /* Pemutar Musik */
+        .musik-box {
+            margin-bottom: 15px;
         }
         
-        .audio-control audio {
+        audio {
+            width: 100%;
+            max-width: 300px;
             height: 30px;
-            opacity: 0.5;
         }
     </style>
 </head>
 <body>
 
-    <!-- Musik Latar Instrumentalia -->
-    <div class="audio-control">
-        <audio id="bgMusic" controls autoplay loop>
-            <source src="https://soundhelix.com" type="audio/mpeg">
-        </audio>
-    </div>
+    <!-- Kotak Presentasi Utama -->
+    <div class="slide-box">
 
-    <!-- Kontainer Presentasi -->
-    <div class="presentation-container">
+        <!-- Pemutar Audio (Gunakan tombol play bawaan browser jika tidak otomatis) -->
+        <div class="musik-box">
+            <audio id="lagu" controls autoplay loop>
+                <source src="https://soundhelix.com" type="audio/mpeg">
+            </audio>
+        </div>
         
-        <!-- Slide 1: Judul Utama -->
-        <div class="slide-content active">
+        <!-- ================= SLIDE 1 ================= -->
+        <div class="halaman aktif">
             <h1>Jago Badminton</h1>
             <p>Selamat datang di panduan menguasai teknik bulu tangkis. Mari kita pelajari 5 teknik dasar yang wajib dikuasai oleh pemain pemula agar bisa bertanding dengan hebat!</p>
-            <div class="image-box">
+            <div class="wadah-gambar">
                 <svg viewBox="0 0 64 64" fill="none" stroke="#00ffcc" stroke-width="2">
-                    <circle cx="25" cy="25" r="15"/>
-                    <path d="M 25,10 L 25,40 M 10,25 L 40,25 M 14,14 L 36,36 M 14,36 L 36,14"/>
-                    <line x1="36" y1="36" x2="55" y2="55"/>
-                    <circle cx="50" cy="42" r="3" fill="#00ffcc"/>
+                    <circle cx="25" cy="25" r="15"/><line x1="36" y1="36" x2="55" y2="55"/>
+                    <path d="M 25,10 L 25,40 M 10,25 L 40,25"/><circle cx="50" cy="42" r="3" fill="#00ffcc"/>
                 </svg>
             </div>
         </div>
 
-        <!-- Slide 2: Teknik 1 -->
-        <div class="slide-content">
-            <h1>1. Teknik Memegang Raket</h1>
-            <p>Kunci utama permainan ada pada genggaman. Kuasai teknik <i>Forehand Grip</i> (seperti menjabat tangan) dan <i>Backhand Grip</i> (ibu jari menekan permukaan gagang yang lebar).</p>
-            <div class="image-box">
+        <!-- ================= SLIDE 2 ================= -->
+        <div class="halaman">
+            <h1>1. Memegang Raket (Grip)</h1>
+            <p>Kunci utama permainan ada pada genggaman. Kuasai teknik Forehand Grip (seperti bersalaman) dan Backhand Grip (ibu jari menekan rata pada gagang raket).</p>
+            <div class="wadah-gambar">
                 <svg viewBox="0 0 64 64" fill="none" stroke="#00ffcc" stroke-width="2">
                     <rect x="25" y="5" width="14" height="50" rx="3"/>
-                    <path d="M 15,20 C 20,20 25,25 25,30 M 15,28 C 20,28 25,33 25,38 M 15,36 C 20,36 25,41 25,46"/>
+                    <path d="M 15,20 C 25,20 25,30 25,30 M 15,30 C 25,30 25,40 25,40"/>
                 </svg>
             </div>
         </div>
 
-        <!-- Slide 3: Teknik 2 -->
-        <div class="slide-content">
+        <!-- ================= SLIDE 3 ================= -->
+        <div class="halaman">
             <h1>2. Sikap Berdiri (Stance)</h1>
-            <p>Posisi tubuh menentukan kecepatan reaksi. Selalu tekuk sedikit lutut Anda, buka kaki selebar bahu, dan pastikan berat badan bertumpu pada ujung kaki depan agar siap bergerak cepat.</p>
-            <div class="image-box">
+            <p>Posisi tubuh menentukan kecepatan reaksi. Selalu tekuk sedikit lutut Anda, buka kaki selebar bahu, dan bertumpu pada ujung kaki agar siap bergerak ke segala arah.</p>
+            <div class="wadah-gambar">
                 <svg viewBox="0 0 64 64" fill="none" stroke="#00ffcc" stroke-width="2">
-                    <circle cx="32" cy="15" r="6"/>
-                    <path d="M 20,28 L 44,28 M 32,21 L 32,40 L 22,55 M 32,40 L 42,55"/>
+                    <circle cx="32" cy="15" r="6"/><path d="M 20,28 L 44,28 M 32,21 L 32,40 L 22,55 M 32,40 L 42,55"/>
                 </svg>
             </div>
         </div>
 
-        <!-- Slide 4: Teknik 3 -->
-        <div class="slide-content">
+        <!-- ================= SLIDE 4 ================= -->
+        <div class="halaman">
             <h1>3. Kerja Kaki (Footwork)</h1>
-            <p>Footwork yang lincah membuat Anda bisa menjangkau seluruh lapangan. Atur langkah kaki agar posisi tubuh selalu seimbang saat mengejar kok ke depan, samping, maupun belakang.</p>
-            <div class="image-box">
+            <p>Footwork yang lincah membuat Anda bisa menjangkau seluruh area lapangan. Atur langkah kaki Anda agar selalu seimbang saat mengejar kok depan maupun belakang.</p>
+            <div class="wadah-gambar">
                 <svg viewBox="0 0 64 64" fill="none" stroke="#00ffcc" stroke-width="2">
                     <path d="M 20,45 C 20,35 30,35 30,45 L 25,55 Z M 44,25 C 44,15 54,15 54,25 L 49,35 Z"/>
-                    <path d="M 25,20 A 10,10 0 0,1 40,15" stroke-dasharray="4"/>
                 </svg>
             </div>
         </div>
 
-        <!-- Slide 5: Teknik 4 -->
-        <div class="slide-content">
-            <h1>4. Servis (Serve)</h1>
-            <p>Servis adalah modal awal meraih poin. Pelajari servis pendek (menggunakan backhand untuk ganda) dan servis panjang tinggi (menggunakan forehand melambung tinggi untuk tunggal).</p>
-            <div class="image-box">
+        <!-- ================= SLIDE 5 ================= -->
+        <div class="halaman">
+            <h1>4. Teknik Servis (Serve)</h1>
+            <p>Servis adalah modal awal untuk memulai permainan dan meraih poin. Pelajari servis pendek (backhand) untuk ganda dan servis tinggi (forehand) untuk tunggal.</p>
+            <div class="wadah-gambar">
                 <svg viewBox="0 0 64 64" fill="none" stroke="#00ffcc" stroke-width="2">
-                    <path d="M 10,50 Q 32,10 54,35" stroke-dasharray="2"/>
-                    <circle cx="10" cy="50" r="3" fill="#00ffcc"/>
-                    <path d="M 50,30 L 54,35 L 47,38"/>
+                    <path d="M 10,50 Q 32,10 54,35" stroke-dasharray="3"/><circle cx="10" cy="50" r="3" fill="#00ffcc"/>
                 </svg>
             </div>
         </div>
 
-        <!-- Slide 6: Teknik 5 -->
-        <div class="slide-content">
+        <!-- ================= SLIDE 6 ================= -->
+        <div class="halaman">
             <h1>5. Pukulan Smash</h1>
-            <p>Ini adalah pukulan menyerang utama untuk mematikan lawan. Lakukan lompatan tinggi, ayunkan raket sekuat tenaga, dan arahkan kok menukik tajam ke area kosong lapangan lawan.</p>
-            <div class="image-box">
+            <p>Ini adalah pukulan menyerang utama untuk mematikan lawan. Lakukan lompatan, ayunkan raket sekuat tenaga dari atas, dan arahkan kok menukik tajam ke area lawan.</p>
+            <div class="wadah-gambar">
                 <svg viewBox="0 0 64 64" fill="none" stroke="#00ffcc" stroke-width="2">
-                    <path d="M 15,15 L 45,45 M 45,45 L 35,45 M 45,45 L 45,35" stroke-width="3"/>
-                    <circle cx="12" cy="12" r="4" fill="#00ffcc"/>
+                    <path d="M 15,15 L 45,45 M 45,45 L 30,45 M 45,45 L 45,30" stroke-width="3"/>
                 </svg>
             </div>
         </div>
 
-        <!-- Bar Kontrol Navigasi Baru -->
-        <div class="controls-bar">
-            <button class="nav-btn" onclick="changeSlide(-1)">KEMBALI</button>
-            <div class="slide-number" id="slideNum">1 / 6</div>
-            <button class="nav-btn" onclick="changeSlide(1)">LANJUT</button>
+        <!-- BAR TOMBOL NAVIGASI (SANGAT AMAN DIKLIK) -->
+        <div class="tombol-bar">
+            <button class="btn" id="tombolKiri">KEMBALI</button>
+            <div class="nomor-halaman" id="infoHalaman">1 / 6</div>
+            <button class="btn" id="tombolKanan">LANJUT</button>
         </div>
 
     </div>
 
-    <!-- Sistem JavaScript Baru yang Presisi -->
+    <!-- Sistem Kontrol JavaScript Paling Stabil -->
     <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide-content');
-        const slideNumDisplay = document.getElementById('slideNum');
+        let indexAktif = 0;
+        const daftarHalaman = document.querySelectorAll('.halaman');
+        const teksNomor = document.getElementById('infoHalaman');
+        const btnKiri = document.getElementById('tombolKiri');
+        const btnKanan = document.getElementById('tombolKanan');
+
+        // Fungsi utama untuk mengubah slide halaman
+        function perbaruiSlide(arah) {
+            // Sembunyikan halaman yang sekarang aktif
+            daftarHalaman[indexAktif].classList.remove('aktif');
+
+            // Hitung indeks halaman berikutnya
+            indexAktif += arah;
+
+            // Jika mentok kanan kembali ke awal, jika mentok kiri kembali ke akhir
+            if (indexAktif >= daftarHalaman.length) {
+                indexAktif = 0;
+            } else if (indexAktif < 0) {
+                indexAktif = daftarHalaman.length - 1;
+            }
+
+            // Tampilkan halaman baru yang dipilih
+            daftarHalaman[indexAktif].classList.add('aktif');
+
+            // Perbarui tulisan angka halaman (misal: 2 / 6)
+            teksNomor.innerText = (indexAktif + 1) + " / " + daftarHalaman.length;
+        }
+
+        // Pasang perintah klik langsung menggunakan Event Listener (Kebal Error Browser)
+        btnKiri.addEventListener('click', function() {
+            perbaruiSlide(-1);
+        });
+
+        btnKanan.addEventListener('click', function() {
+            perbaruiSlide(1);
+        });
 
     
