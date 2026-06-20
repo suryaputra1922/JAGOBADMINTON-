@@ -13,7 +13,7 @@
             font-family: Arial, sans-serif;
         }
 
-        /* Latar Belakang Lapangan Badminton (Menggunakan Gambar Garis Pasti Muncul) */
+        /* Latar Belakang Lapangan Badminton SVG */
         body {
             background-color: #0b132b;
             background-image: 
@@ -29,7 +29,7 @@
             padding: 20px;
         }
 
-        /* Kotak Presentasi Sederhana - Tanpa Lapisan Yang Menghalangi Klik */
+        /* Kotak Presentasi Utama */
         .slide-box {
             width: 100%;
             max-width: 700px;
@@ -39,16 +39,22 @@
             padding: 30px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
         }
 
-        /* Sistem Slide Menggunakan Class Sederhana */
+        /* Sistem Slide CSS Murni (Menyembunyikan Semua Slide secara Default) */
         .halaman {
             display: none;
         }
 
-        /* Hanya Tampilkan Slide yang Aktif */
-        .halaman.aktif {
+        /* Menampilkan Slide Utama Saat Pertama Kali Dibuka */
+        #slide1, .halaman:target {
             display: block;
+        }
+
+        /* Menyembunyikan Slide 1 Jika Slide Lain Sedang Aktif */
+        .halaman:target ~ #slide1 {
+            display: none;
         }
 
         /* Judul Slide */
@@ -65,6 +71,7 @@
             line-height: 1.6;
             color: #e0e0e0;
             margin-bottom: 25px;
+            min-height: 80px;
         }
 
         /* Animasi Kotak Gambar Bergerak Naik Turun */
@@ -100,16 +107,16 @@
             padding-top: 20px;
         }
 
-        /* Desain Tombol yang Besar dan Pasti Bisa Diklik */
+        /* Desain Tombol berupa Link Tautan HTML Aktif */
         .btn {
+            display: inline-block;
             background-color: #00ffcc;
             color: #0b132b;
-            border: none;
+            text-decoration: none;
             padding: 12px 25px;
             font-size: 1rem;
             font-weight: bold;
             border-radius: 8px;
-            cursor: pointer;
             transition: background 0.2s;
         }
 
@@ -140,7 +147,7 @@
     <!-- Kotak Presentasi Utama -->
     <div class="slide-box">
 
-        <!-- Pemutar Audio (Gunakan tombol play bawaan browser jika tidak otomatis) -->
+        <!-- Pemutar Audio (Gunakan tombol play bawaan browser jika tidak otomatis berputar) -->
         <div class="musik-box">
             <audio id="lagu" controls autoplay loop>
                 <source src="https://soundhelix.com" type="audio/mpeg">
@@ -148,7 +155,7 @@
         </div>
         
         <!-- ================= SLIDE 1 ================= -->
-        <div class="halaman aktif">
+        <div id="slide1" class="halaman">
             <h1>Jago Badminton</h1>
             <p>Selamat datang di panduan menguasai teknik bulu tangkis. Mari kita pelajari 5 teknik dasar yang wajib dikuasai oleh pemain pemula agar bisa bertanding dengan hebat!</p>
             <div class="wadah-gambar">
@@ -157,10 +164,15 @@
                     <path d="M 25,10 L 25,40 M 10,25 L 40,25"/><circle cx="50" cy="42" r="3" fill="#00ffcc"/>
                 </svg>
             </div>
+            <div class="tombol-bar">
+                <a href="#slide6" class="btn">KEMBALI</a>
+                <div class="nomor-halaman">1 / 6</div>
+                <a href="#slide2" class="btn">LANJUT</a>
+            </div>
         </div>
 
         <!-- ================= SLIDE 2 ================= -->
-        <div class="halaman">
+        <div id="slide2" class="halaman">
             <h1>1. Memegang Raket (Grip)</h1>
             <p>Kunci utama permainan ada pada genggaman. Kuasai teknik Forehand Grip (seperti bersalaman) dan Backhand Grip (ibu jari menekan rata pada gagang raket).</p>
             <div class="wadah-gambar">
@@ -169,10 +181,15 @@
                     <path d="M 15,20 C 25,20 25,30 25,30 M 15,30 C 25,30 25,40 25,40"/>
                 </svg>
             </div>
+            <div class="tombol-bar">
+                <a href="#slide1" class="btn">KEMBALI</a>
+                <div class="nomor-halaman">2 / 6</div>
+                <a href="#slide3" class="btn">LANJUT</a>
+            </div>
         </div>
 
         <!-- ================= SLIDE 3 ================= -->
-        <div class="halaman">
+        <div id="slide3" class="halaman">
             <h1>2. Sikap Berdiri (Stance)</h1>
             <p>Posisi tubuh menentukan kecepatan reaksi. Selalu tekuk sedikit lutut Anda, buka kaki selebar bahu, dan bertumpu pada ujung kaki agar siap bergerak ke segala arah.</p>
             <div class="wadah-gambar">
@@ -180,10 +197,15 @@
                     <circle cx="32" cy="15" r="6"/><path d="M 20,28 L 44,28 M 32,21 L 32,40 L 22,55 M 32,40 L 42,55"/>
                 </svg>
             </div>
+            <div class="tombol-bar">
+                <a href="#slide2" class="btn">KEMBALI</a>
+                <div class="nomor-halaman">3 / 6</div>
+                <a href="#slide4" class="btn">LANJUT</a>
+            </div>
         </div>
 
         <!-- ================= SLIDE 4 ================= -->
-        <div class="halaman">
+        <div id="slide4" class="halaman">
             <h1>3. Kerja Kaki (Footwork)</h1>
             <p>Footwork yang lincah membuat Anda bisa menjangkau seluruh area lapangan. Atur langkah kaki Anda agar selalu seimbang saat mengejar kok depan maupun belakang.</p>
             <div class="wadah-gambar">
@@ -191,10 +213,15 @@
                     <path d="M 20,45 C 20,35 30,35 30,45 L 25,55 Z M 44,25 C 44,15 54,15 54,25 L 49,35 Z"/>
                 </svg>
             </div>
+            <div class="tombol-bar">
+                <a href="#slide3" class="btn">KEMBALI</a>
+                <div class="nomor-halaman">4 / 6</div>
+                <a href="#slide5" class="btn">LANJUT</a>
+            </div>
         </div>
 
         <!-- ================= SLIDE 5 ================= -->
-        <div class="halaman">
+        <div id="slide5" class="halaman">
             <h1>4. Teknik Servis (Serve)</h1>
             <p>Servis adalah modal awal untuk memulai permainan dan meraih poin. Pelajari servis pendek (backhand) untuk ganda dan servis tinggi (forehand) untuk tunggal.</p>
             <div class="wadah-gambar">
@@ -202,10 +229,15 @@
                     <path d="M 10,50 Q 32,10 54,35" stroke-dasharray="3"/><circle cx="10" cy="50" r="3" fill="#00ffcc"/>
                 </svg>
             </div>
+            <div class="tombol-bar">
+                <a href="#slide4" class="btn">KEMBALI</a>
+                <div class="nomor-halaman">5 / 6</div>
+                <a href="#slide6" class="btn">LANJUT</a>
+            </div>
         </div>
 
         <!-- ================= SLIDE 6 ================= -->
-        <div class="halaman">
+        <div id="slide6" class="halaman">
             <h1>5. Pukulan Smash</h1>
             <p>Ini adalah pukulan menyerang utama untuk mematikan lawan. Lakukan lompatan, ayunkan raket sekuat tenaga dari atas, dan arahkan kok menukik tajam ke area lawan.</p>
             <div class="wadah-gambar">
@@ -213,54 +245,15 @@
                     <path d="M 15,15 L 45,45 M 45,45 L 30,45 M 45,45 L 45,30" stroke-width="3"/>
                 </svg>
             </div>
-        </div>
-
-        <!-- BAR TOMBOL NAVIGASI (SANGAT AMAN DIKLIK) -->
-        <div class="tombol-bar">
-            <button class="btn" id="tombolKiri">KEMBALI</button>
-            <div class="nomor-halaman" id="infoHalaman">1 / 6</div>
-            <button class="btn" id="tombolKanan">LANJUT</button>
+            <div class="tombol-bar">
+                <a href="#slide5" class="btn">KEMBALI</a>
+                <div class="nomor-halaman">6 / 6</div>
+                <a href="#slide1" class="btn">LANJUT</a>
+            </div>
         </div>
 
     </div>
 
-    <!-- Sistem Kontrol JavaScript Paling Stabil -->
-    <script>
-        let indexAktif = 0;
-        const daftarHalaman = document.querySelectorAll('.halaman');
-        const teksNomor = document.getElementById('infoHalaman');
-        const btnKiri = document.getElementById('tombolKiri');
-        const btnKanan = document.getElementById('tombolKanan');
-
-        // Fungsi utama untuk mengubah slide halaman
-        function perbaruiSlide(arah) {
-            // Sembunyikan halaman yang sekarang aktif
-            daftarHalaman[indexAktif].classList.remove('aktif');
-
-            // Hitung indeks halaman berikutnya
-            indexAktif += arah;
-
-            // Jika mentok kanan kembali ke awal, jika mentok kiri kembali ke akhir
-            if (indexAktif >= daftarHalaman.length) {
-                indexAktif = 0;
-            } else if (indexAktif < 0) {
-                indexAktif = daftarHalaman.length - 1;
-            }
-
-            // Tampilkan halaman baru yang dipilih
-            daftarHalaman[indexAktif].classList.add('aktif');
-
-            // Perbarui tulisan angka halaman (misal: 2 / 6)
-            teksNomor.innerText = (indexAktif + 1) + " / " + daftarHalaman.length;
-        }
-
-        // Pasang perintah klik langsung menggunakan Event Listener (Kebal Error Browser)
-        btnKiri.addEventListener('click', function() {
-            perbaruiSlide(-1);
-        });
-
-        btnKanan.addEventListener('click', function() {
-            perbaruiSlide(1);
-        });
-
-    
+</body>
+    </html>
+                    
