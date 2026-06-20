@@ -12,13 +12,8 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* --- PENGATURAN BACKGROUND BELAKGS (Desain Lapangan Badminton Instan) --- */
         body {
-            background-color: #0d5c3a; /* Warna Hijau Lapangan Karpet Badminton */
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.15) 2px, transparent 2px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.15) 2px, transparent 2px);
-            background-size: 100px 100px;
+            position: relative;
             color: #2c3e50;
             display: flex;
             flex-direction: column;
@@ -26,35 +21,48 @@
             align-items: center;
             height: 100vh;
             overflow: hidden;
-            position: relative;
+            background-color: #111;
         }
 
-        /* Garis Lapangan Estetik */
-        body::before {
-            content: "";
+        /* --- KODE BACKGROUND KOLASE ATLET BADMINTON DUNIA --- */
+        .bg-collage {
             position: absolute;
-            width: 90%;
-            height: 90%;
-            border: 4px solid rgba(255, 255, 255, 0.4);
-            pointer-events: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            grid-auto-rows: 150px;
+            gap: 2px;
             z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
         }
 
-        /* Kotak Slide dengan Efek Kaca Transparan */
+        .bg-collage img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.5) contrast(1.1); /* Sedikit digelapkan agar tulisan terbaca jelas */
+        }
+
+        /* Kotak Slide dengan Efek Kaca Transparan Lembut */
         .slide-container {
             width: 85%;
             max-width: 850px;
-            height: 480px;
-            background-color: rgba(255, 255, 255, 0.95); 
+            height: 490px;
+            background-color: rgba(255, 255, 255, 0.90); 
             border-radius: 15px;
-            padding: 35px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            padding: 25px 35px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
             display: none;
             flex-direction: column;
             justify-content: space-between;
             position: relative;
-            z-index: 1;
-            border: 3px solid #d4af37; /* Border Emas */
+            z-index: 10;
+            border: 3px solid #d4af37; /* Bingkai Emas Mewah */
+            backdrop-filter: blur(12px); 
         }
 
         .slide-container.active {
@@ -62,7 +70,7 @@
             animation: fadeIn 0.5s ease-in-out;
         }
 
-        /* Layout Grid Gambar dan Teks */
+        /* Layout Grid Gambar Slide dan Teks */
         .slide-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -71,78 +79,95 @@
             height: 80%;
         }
 
-        /* Layout Khusus Slide Judul */
+        /* Layout Khusus Slide Judul Utama / Slide Video */
         .slide-container.center-layout .slide-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: center;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            text-align: left;
             height: 100%;
+            align-items: center;
         }
 
-        /* Warna Judul Utama */
+        /* Judul Utama */
         h1 {
             color: #b8860b;
-            font-size: 2.8rem;
-            margin-bottom: 20px;
-            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
-        /* Warna Judul Sub-Bab */
+        /* Judul Teknik */
         h2 {
             color: #aa7c11;
             font-size: 1.8rem;
             margin-bottom: 12px;
         }
 
-        /* Warna Teks Deskripsi */
+        /* Deskripsi */
         p {
             font-size: 1rem;
             line-height: 1.5;
-            color: #2c3e50;
+            color: #1a252f;
             font-weight: 500;
         }
 
         strong {
             color: #b8860b;
+            font-weight: 700;
         }
 
-        /* Wadah Gambar Desain SVG */
-        .svg-image-wrapper {
+        /* Bingkai Gambar Ilustrasi Teknik */
+        .slide-image {
             width: 100%;
             height: 250px;
-            background: linear-gradient(135deg, #111 0%, #333 100%);
+            object-fit: cover;
             border-radius: 10px;
             border: 2px solid #cfb53b;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* --- FRAME RESEPONSUR UNTUK VIDEO YOUTUBE --- */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Rasio 16:9 */
+            height: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #cfb53b;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
 
         /* Audio Player Container */
         .audio-container {
             width: 100%;
-            margin-top: 15px;
+            margin-top: 10px;
             display: flex;
             justify-content: center;
         }
 
         audio {
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
             height: 32px;
-            border-radius: 5px;
         }
 
-        /* Navigasi */
+        /* Tombol Navigasi */
         .navigation {
             margin-top: 20px;
             display: flex;
             gap: 15px;
-            z-index: 1;
+            z-index: 10;
         }
 
-        /* Tombol Emas */
         button {
             background: linear-gradient(135deg, #d4af37 0%, #aa7c11 100%);
             color: white;
@@ -150,15 +175,16 @@
             padding: 10px 25px;
             font-size: 1rem;
             font-weight: 600;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.3);
             transition: all 0.3s;
         }
 
         button:hover {
             background: linear-gradient(135deg, #e6ca65 0%, #b8860b 100%);
             transform: translateY(-2px);
+            box-shadow: 0 7px 18px rgba(0,0,0,0.4);
         }
 
         button:disabled {
@@ -166,35 +192,56 @@
             color: #7f8c8d;
             cursor: not-allowed;
             transform: none;
+            box-shadow: none;
         }
 
-        /* Teks Nomor Slide */
+        /* Nomor Slide */
         .slide-number {
             margin-top: 15px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 600;
             color: white;
-            background-color: rgba(0, 0, 0, 0.6);
-            padding: 3px 12px;
-            border-radius: 10px;
-            z-index: 1;
+            background-color: rgba(0, 0, 0, 0.75);
+            padding: 4px 15px;
+            border-radius: 20px;
+            z-index: 10;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
+    <div class="bg-collage">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Chou_Tien-Chen_at_2015_Singapore_Open_Super_Series_-_20150410-02.jpg/400px-Chou_Tien-Chen_at_2015_Singapore_Open_Super_Series_-_20150410-02.jpg" alt="Chou Tien Chen">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Lin_Dan_at_2011_Yonex_IFB_02.jpg/400px-Lin_Dan_at_2011_Yonex_IFB_02.jpg" alt="Lin Dan">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Lee_Chong_Wei_at_2011_Yonex_IFB_02.jpg/400px-Lee_Chong_Wei_at_2011_Yonex_IFB_02.jpg" alt="Lee Chong Wei">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Jonatan_Christie_at_Indonesia_Open_2018.jpg/400px-Jonatan_Christie_at_Indonesia_Open_2018.jpg" alt="Jonatan Christie">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Viktor_Axelsen_Total_BWF_World_Championships_2017_1.jpg/400px-Viktor_Axelsen_Total_BWF_World_Championships_2017_1.jpg" alt="Viktor Axelsen">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Tai_Tzu-ying_at_2014_Singapore_Open.jpg/400px-Tai_Tzu-ying_at_2014_Singapore_Open.jpg" alt="Tai Tzu Ying">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Carolina_Mar%C3%ADn_Rio_2016.jpg/400px-Carolina_Mar%C3%ADn_Rio_2016.jpg" alt="Carolina Marin">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Shon_Seung-mo.jpg/400px-Shon_Seung-mo.jpg" alt="Atlet Badminton">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Chen_Long_at_2015_Singapore_Open.jpg/400px-Chen_Long_at_2015_Singapore_Open.jpg" alt="Chen Long">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Srikant_at_Singapore_Open_2015_-_20150410.jpg/400px-Srikant_at_Singapore_Open_2015_-_20150410.jpg" alt="Srikanth">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Taufik_Hidayat_at_2011_Yonex_IFB_02.jpg/400px-Taufik_Hidayat_at_2011_Yonex_IFB_02.jpg" alt="Taufik Hidayat">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Peter_Gade_at_2011_Yonex_IFB.jpg/400px-Peter_Gade_at_2011_Yonex_IFB.jpg" alt="Peter Gade">
+    </div>
+
     <div class="slide-container active center-layout">
         <div class="slide-content">
-            <h1>Jago Badminton</h1>
-            <p style="font-size: 1.2rem; font-weight: 600;">
-                Selamat datang di panduan digital "Jago Badminton". <br>
-                Mari pelajari 5 teknik dasar penting untuk menguasai lapangan bulu tangkis!
-            </p>
+            <div>
+                <h1>Jago Badminton</h1>
+                <p style="font-size: 1.1rem; font-weight: 600;">
+                    Selamat datang di panduan digital "Jago Badminton".<br><br>
+                    Tonton video di samping untuk ringkasan materi, lalu klik tombol di bawah untuk mempelajari 5 teknik dasar secara detail!
+                </p>
+            </div>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/1oorTNK_qw4" title="Video Materi Teknik Dasar Bulutangkis" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
         </div>
         <div class="audio-container">
             <audio controls src="audio/intro.mp3"></audio>
@@ -203,13 +250,7 @@
 
     <div class="slide-container">
         <div class="slide-content">
-            <div class="svg-image-wrapper">
-                <svg width="150" height="150" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
-                    <ellipse cx="12" cy="7" rx="5" ry="6"/>
-                    <path d="M12 13v6M10 19h4M12 7m-3 0a3 3 0 1 0 6 0 3 3 0 1 0 -6 0" stroke-dasharray="2 2"/>
-                    <path d="M8 15c1 1 2 3 4 3s3-2 4-3" stroke="#fff" stroke-width="2"/>
-                </svg>
-            </div>
+            <img class="slide-image" src="grip.jpg" alt="Teknik Grip Memegang Raket">
             <div>
                 <h2>1. Memegang Raket (Grip)</h2>
                 <p>
@@ -226,12 +267,7 @@
 
     <div class="slide-container">
         <div class="slide-content">
-            <div class="svg-image-wrapper">
-                <svg width="150" height="150" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
-                    <path d="M7 16c0-2-1-3-2-4s-1-3 0-5 2-2 3-1 1 3 0 5-1 3-1 5z" fill="rgba(212,175,55,0.2)"/>
-                    <path d="M17 14c0-2 1-3 2-4s1-3 0-5-2-2-3-1-1 3 0 5 1 3 1 5z" fill="rgba(255,255,255,0.2)" stroke="#fff"/>
-                </svg>
-            </div>
+            <img class="slide-image" src="footwork.jpg" alt="Teknik Footwork Langkah Kaki">
             <div>
                 <h2>2. Pergerakan Kaki (Footwork)</h2>
                 <p>
@@ -247,13 +283,7 @@
 
     <div class="slide-container">
         <div class="slide-content">
-            <div class="svg-image-wrapper">
-                <svg width="150" height="150" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5">
-                    <path d="M12 19a3 3 0 0 1-3-3h6a3 3 0 0 1-3 3z" fill="#d4af37"/>
-                    <path d="M9 16L6 6h12l-3 10H9z" stroke-width="1"/>
-                    <path d="M9 11h6M8 7h8"/>
-                </svg>
-            </div>
+            <img class="slide-image" src="servis.jpg" alt="Teknik Servis Bulu Tangkis">
             <div>
                 <h2>3. Teknik Servis (Serve)</h2>
                 <p>
@@ -270,11 +300,7 @@
 
     <div class="slide-container">
         <div class="slide-content">
-            <div class="svg-image-wrapper">
-                <svg width="150" height="150" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2">
-                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="rgba(212,175,55,0.3)"/>
-                </svg>
-            </div>
+            <img class="slide-image" src="smash.jpg" alt="Pukulan Jumping Smash Tajam">
             <div>
                 <h2>4. Pukulan Smash</h2>
                 <p>
@@ -290,13 +316,7 @@
 
     <div class="slide-container">
         <div class="slide-content">
-            <div class="svg-image-wrapper">
-                <svg width="150" height="150" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5">
-                    <path d="M2 16h20M2 20h20M6 16v5M12 16v5M18 16v5" stroke="#d4af37"/>
-                    <circle cx="12" cy="10" r="2" fill="#fff"/>
-                    <path d="M12 10l3-5" stroke-dasharray="2 2"/>
-                </svg>
-            </div>
+            <img class="slide-image" src="dropshot.jpg" alt="Pukulan Dropshot Tipis di Net">
             <div>
                 <h2>5. Pukulan Dropshot</h2>
                 <p>
@@ -338,6 +358,7 @@
             
             slideNum.innerText = `Slide ${currentSlide + 1} dari ${slides.length}`;
 
+            // Reset audio setiap kali berpindah slide
             const allAudios = document.querySelectorAll('audio');
             allAudios.forEach(audio => {
                 audio.pause();
