@@ -12,10 +12,10 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* --- PENGATURAN BACKGROUND BELAKANG (Foto Lapangan Badminton Dunia) --- */
+        /* --- PENGATURAN BACKGROUND BELAKANG --- */
         body {
-            /* Menggunakan gambar lapangan badminton internasional resmi */
-            background-image: url('https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?q=80&w=1200&auto=format&fit=crop'); 
+            /* Diarahkan langsung ke file bg-atlet.jpg di dalam folder gambar kamu */
+            background-image: url('gambar/bg-atlet.jpg'); 
             
             background-size: cover;          
             background-position: center;     
@@ -31,7 +31,7 @@
             overflow: hidden;
         }
 
-        /* Kotak Slide: Efek kaca transparan (Frosted Glass) semi-silver */
+        /* Kotak Slide: Efek kaca transparan (Frosted Glass) mewah */
         .slide-container {
             width: 85%;
             max-width: 850px;
@@ -194,7 +194,7 @@
 
     <div class="slide-container">
         <div class="slide-content">
-            <img class="slide-image" src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?q=80&w=500&auto=format&fit=crop" alt="Teknik Grip Memegang Raket">
+            <img class="slide-image" src="gambar/grip.jpg" alt="Teknik Grip Memegang Raket">
             <div>
                 <h2>1. Memegang Raket (Grip)</h2>
                 <p>
@@ -211,7 +211,7 @@
 
     <div class="slide-container">
         <div class="slide-content">
-            <img class="slide-image" src="https://images.unsplash.com/photo-1613918108466-292b78a8ef95?q=80&w=500&auto=format&fit=crop" alt="Teknik Footwork Langkah Kaki">
+            <img class="slide-image" src="gambar/footwork.jpg" alt="Teknik Footwork Langkah Kaki">
             <div>
                 <h2>2. Pergerakan Kaki (Footwork)</h2>
                 <p>
@@ -227,7 +227,7 @@
 
     <div class="slide-container">
         <div class="slide-content">
-            <img class="slide-image" src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?q=80&w=500&auto=format&fit=crop" alt="Teknik Servis Bulu Tangkis">
+            <img class="slide-image" src="gambar/servis.jpg" alt="Teknik Servis Bulu Tangkis">
             <div>
                 <h2>3. Teknik Servis (Serve)</h2>
                 <p>
@@ -244,7 +244,7 @@
 
     <div class="slide-container">
         <div class="slide-content">
-            <img class="slide-image" src="https://images.unsplash.com/photo-1521537634180-60aca3d2434a?q=80&w=500&auto=format&fit=crop" alt="Pukulan Jumping Smash Tajam">
+            <img class="slide-image" src="gambar/smash.jpg" alt="Pukulan Jumping Smash Tajam">
             <div>
                 <h2>4. Pukulan Smash</h2>
                 <p>
@@ -260,7 +260,7 @@
 
     <div class="slide-container">
         <div class="slide-content">
-            <img class="slide-image" src="https://images.unsplash.com/photo-1622599247881-2e78387fa769?q=80&w=500&auto=format&fit=crop" alt="Pukulan Dropshot Tipis di Net">
+            <img class="slide-image" src="gambar/dropshot.jpg" alt="Pukulan Dropshot Tipis di Net">
             <div>
                 <h2>5. Pukulan Dropshot</h2>
                 <p>
@@ -285,7 +285,6 @@
         let currentSlide = 0;
         let slides, prevBtn, nextBtn, slideNum;
 
-        // Script baru berjalan setelah seluruh halaman siap
         window.onload = function() {
             slides = document.querySelectorAll('.slide-container');
             prevBtn = document.getElementById('prevBtn');
@@ -303,7 +302,6 @@
             
             slideNum.innerText = `Slide ${currentSlide + 1} dari ${slides.length}`;
 
-            // Reset otomatis audio agar tidak bertabrakan saat ganti slide
             const allAudios = document.querySelectorAll('audio');
             allAudios.forEach(audio => {
                 audio.pause();
