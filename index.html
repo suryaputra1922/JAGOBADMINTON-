@@ -24,16 +24,16 @@
         }
 
         .slide-container {
-            width: 80%;
-            max-width: 800px;
-            height: 450px;
+            width: 85%;
+            max-width: 850px;
+            height: 480px;
             background-color: #16213e;
             border-radius: 15px;
-            padding: 40px;
+            padding: 35px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             display: none;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between; /* Membuat konten & audio terpisah rapi */
             position: relative;
             border: 2px solid #0f3460;
         }
@@ -41,6 +41,24 @@
         .slide-container.active {
             display: flex;
             animation: fadeIn 0.5s ease-in-out;
+        }
+
+        /* Layout Grid untuk membagi Gambar dan Teks */
+        .slide-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Membagi 50% kiri dan 50% kanan */
+            gap: 25px;
+            align-items: center;
+            height: 80%;
+        }
+
+        /* Layout khusus untuk Slide Judul agar tetap di tengah */
+        .slide-container.center-layout .slide-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            height: 100%;
         }
 
         h1 {
@@ -52,14 +70,39 @@
 
         h2 {
             color: #00d2fc;
-            font-size: 2rem;
-            margin-bottom: 15px;
+            font-size: 1.8rem;
+            margin-bottom: 12px;
         }
 
         p {
-            font-size: 1.1rem;
-            line-height: 1.6;
+            font-size: 1rem;
+            line-height: 1.5;
             color: #e2e8f0;
+        }
+
+        /* Styling untuk Gambar */
+        .slide-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover; /* Memastikan gambar tidak gepeng */
+            border-radius: 10px;
+            border: 2px solid #0f3460;
+            background-color: #1a1a2e; /* Fallback warna jika gambar belum dimuat */
+        }
+
+        /* Styling untuk Audio Player */
+        .audio-container {
+            width: 100%;
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+        }
+
+        audio {
+            width: 100%;
+            max-width: 400px;
+            height: 32px;
+            border-radius: 5px;
         }
 
         .navigation {
@@ -102,61 +145,99 @@
 </head>
 <body>
 
-    <div class="slide-container active">
-        <h1>Jago Badminton</h1>
-        <p style="text-align: center; font-size: 1.3rem;">
-            Selamat datang di panduan digital "Jago Badminton". <br>
-            Mari pelajari 5 teknik dasar penting untuk menguasai lapangan bulu tangkis!
-        </p>
+    <div class="slide-container active center-layout">
+        <div class="slide-content">
+            <h1>Jago Badminton</h1>
+            <p style="font-size: 1.2rem;">
+                Selamat datang di panduan digital "Jago Badminton". <br>
+                Mari pelajari 5 teknik dasar penting untuk menguasai lapangan bulu tangkis!
+            </p>
+        </div>
+        <div class="audio-container">
+            <audio controls src="audio/intro.mp3"></audio>
+        </div>
     </div>
 
     <div class="slide-container">
-        <h2>1. Teknik Memegang Raket (Grip)</h2>
-        <p>
-            Cara memegang raket adalah fondasi utama. Ada dua jenis grip yang paling sering digunakan:
-            <br><br>
-            • <strong>Forehand Grip:</strong> Posisi tangan seperti bersalaman, membentuk huruf 'V' di antara jempol dan telunjuk.
-            <br>
-            • <strong>Backhand Grip:</strong> Ibu jari digeser ke permukaan gagang raket yang lebih lebar untuk memberikan dorongan ekstra.
-        </p>
+        <div class="slide-content">
+            <img class="slide-image" src="gambar/grip.jpg" alt="Teknik Grip">
+            <div>
+                <h2>1. Memegang Raket (Grip)</h2>
+                <p>
+                    Cara memegang raket adalah fondasi utama. Ada dua jenis grip yang paling sering digunakan:<br><br>
+                    • <strong>Forehand Grip:</strong> Posisi tangan seperti bersalaman, membentuk huruf 'V' di antara jempol dan telunjuk.<br>
+                    • <strong>Backhand Grip:</strong> Ibu jari digeser ke gagang raket yang lebar untuk dorongan ekstra.
+                </p>
+            </div>
+        </div>
+        <div class="audio-container">
+            <audio controls src="audio/grip.mp3"></audio>
+        </div>
     </div>
 
     <div class="slide-container">
-        <h2>2. Pergerakan Kaki (Footwork)</h2>
-        <p>
-            Badminton adalah tentang kecepatan. Footwork yang benar memastikan kamu bisa menjangkau kok (shuttlecock) ke segala sudut lapangan dengan efisien dan seimbang. 
-            <br><br>
-            Kuncinya adalah selalu kembali ke posisi tengah (center court) setelah memukul kok agar siap menerima serangan berikutnya.
-        </p>
+        <div class="slide-content">
+            <img class="slide-image" src="gambar/footwork.jpg" alt="Teknik Footwork">
+            <div>
+                <h2>2. Pergerakan Kaki (Footwork)</h2>
+                <p>
+                    Badminton adalah tentang kecepatan. Footwork yang benar memastikan kamu bisa menjangkau kok ke segala sudut lapangan dengan efisien.<br><br>
+                    Kuncinya adalah selalu kembali ke posisi tengah lapangan setelah memukul kok agar siap menerima serangan berikutnya.
+                </p>
+            </div>
+        </div>
+        <div class="audio-container">
+            <audio controls src="audio/footwork.mp3"></audio>
+        </div>
     </div>
 
     <div class="slide-container">
-        <h2>3. Teknik Servis (Serve)</h2>
-        <p>
-            Pertandingan dimulai dari servis. Servis yang baik bisa langsung menghasilkan poin atau menyulitkan lawan untuk menyerang.
-            <br><br>
-            • <strong>Servis Pendek (Short Serve):</strong> Biasanya dipakai di sektor ganda, kok meluncur tipis di atas net.
-            <br>
-            • <strong>Servis Panjang (Long Serve):</strong> Sering dipakai di sektor tunggal, kok dilempar tinggi jauh ke garis belakang lawan.
-        </p>
+        <div class="slide-content">
+            <img class="slide-image" src="gambar/servis.jpg" alt="Teknik Servis">
+            <div>
+                <h2>3. Teknik Servis (Serve)</h2>
+                <p>
+                    Pertandingan dimulai dari servis. Servis yang baik bisa menghasilkan poin langsung atau menyulitkan lawan.<br><br>
+                    • <strong>Servis Pendek:</strong> Biasanya dipakai di sektor ganda, kok meluncur tipis di atas net.<br>
+                    • <strong>Servis Panjang:</strong> Sering dipakai di sektor tunggal, kok dilempar tinggi ke garis belakang lawan.
+                </p>
+            </div>
+        </div>
+        <div class="audio-container">
+            <audio controls src="audio/servis.mp3"></audio>
+        </div>
     </div>
 
     <div class="slide-container">
-        <h2>4. Pukulan Smash</h2>
-        <p>
-            Ini adalah senjata utama untuk mematikan langkah lawan dan mencetak skor. 
-            <br><br>
-            Smash adalah pukulan ofensif yang dilakukan dengan melompat atau berdiri tegak, memukul kok dari posisi tinggi dengan kekuatan penuh ke arah area kosong di lapangan lawan secara menukik tajam.
-        </p>
+        <div class="slide-content">
+            <img class="slide-image" src="gambar/smash.jpg" alt="Pukulan Smash">
+            <div>
+                <h2>4. Pukulan Smash</h2>
+                <p>
+                    Ini adalah senjata utama untuk mematikan langkah lawan dan mencetak skor.<br><br>
+                    Smash adalah pukulan ofensif keras yang dilakukan dari posisi tinggi dengan kekuatan penuh ke arah area kosong di lapangan lawan secara menukik tajam.
+                </p>
+            </div>
+        </div>
+        <div class="audio-container">
+            <audio controls src="audio/smash.mp3"></audio>
+        </div>
     </div>
 
     <div class="slide-container">
-        <h2>5. Pukulan Dropshot</h2>
-        <p>
-            Jika smash mengandalkan kekuatan, dropshot mengandalkan kecerdikan dan kelembutan.
-            <br><br>
-            Teknik ini dilakukan dengan gerakan seperti ingin melakukan smash, namun di detik terakhir raket hanya menyentuh kok dengan halus agar jatuh tipis di dekat net lawan. Sangat ampuh untuk mengecoh lawan yang terlanjur mundur ke belakang.
-        </p>
+        <div class="slide-content">
+            <img class="slide-image" src="gambar/dropshot.jpg" alt="Pukulan Dropshot">
+            <div>
+                <h2>5. Pukulan Dropshot</h2>
+                <p>
+                    Jika smash mengandalkan kekuatan, dropshot mengandalkan kecerdikan.<br><br>
+                    Teknik ini dilakukan dengan gerakan menipu seperti smash, namun di detik terakhir raket hanya menyentuh kok dengan halus agar jatuh tipis di dekat net lawan. Ampuh mengecoh lawan yang terlanjur mundur.
+                </p>
+            </div>
+        </div>
+        <div class="audio-container">
+            <audio controls src="audio/dropshot.mp3"></audio>
+        </div>
     </div>
 
     <div class="navigation">
@@ -164,7 +245,7 @@
         <button id="nextBtn" onclick="changeSlide(1)">Selanjutnya</button>
     </div>
 
-    <div class="slide-number" id="slideNum">Slide 1 dari 6</div>
+    <div class="slide-number" id="slideNum"></div>
 
     <script>
         let currentSlide = 0;
@@ -173,18 +254,29 @@
         const nextBtn = document.getElementById('nextBtn');
         const slideNum = document.getElementById('slideNum');
 
+        function updateUI() {
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === slides.length - 1;
+            slideNum.innerText = `Slide ${currentSlide + 1} dari ${slides.length}`;
+
+            // OTOMATIS MEMATIKAN AUDIO DI SLIDE SEBELUMNYA SAAT PINDAH SLIDE
+            const allAudios = document.querySelectorAll('audio');
+            allAudios.forEach(audio => {
+                audio.pause();
+                audio.currentTime = 0; // Reset ke detik ke-0
+            });
+        }
+
         function changeSlide(direction) {
             slides[currentSlide].classList.remove('active');
             currentSlide += direction;
             slides[currentSlide].classList.add('active');
 
-            // Update tombol tombol kontrol
-            prevBtn.disabled = currentSlide === 0;
-            nextBtn.disabled = currentSlide === slides.length - 1;
-
-            // Update text slide
-            slideNum.innerText = `Slide ${currentSlide + 1} dari ${slides.length}`;
+            updateUI();
         }
+
+        // Inisialisasi awal
+        updateUI();
     </script>
 </body>
 </html>
