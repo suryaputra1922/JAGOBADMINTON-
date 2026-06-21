@@ -13,7 +13,6 @@
         }
 
         body {
-            background-color: #111;
             color: #fff;
             overflow: hidden;
         }
@@ -41,6 +40,10 @@
             transform: scale(0.8) translateY(50px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             visibility: hidden;
+            background-image: url('nama_foto_anda.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         /* Animasi Slide Aktif */
@@ -51,13 +54,6 @@
         }
 
         /* Background per Slide */
-        .slide:nth-child(1) { background: linear-gradient(135deg, #1e3c72, #2a5298); }
-        .slide:nth-child(2) { background: linear-gradient(135deg, #11998e, #38ef7d); }
-        .slide:nth-child(3) { background: linear-gradient(135deg, #ff9966, #ff5e62); }
-        .slide:nth-child(4) { background: linear-gradient(135deg, #7f00ff, #e100ff); }
-        .slide:nth-child(5) { background: linear-gradient(135deg, #f12711, #f5af19); }
-        .slide:nth-child(6) { background: linear-gradient(135deg, #0f2027, #203a43); }
-
         /* Elemen Visual & Animasi Teks */
         h1 {
             font-size: 3.5rem;
