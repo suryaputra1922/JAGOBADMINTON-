@@ -186,7 +186,8 @@
 </head>
 <body>
 
-    <audio id="bg-music" src="Sou Favela Dance Brazil _ Dance Viral Tiktok Terbaru 2026 #viral #trendtiktok #danceviral #velocity [lKy68rbhGiE].mp3" loop preload="auto"></audio>
+    <!-- Nama file audio disederhanakan agar tidak error dibaca browser -->
+    <audio id="bg-music" src="bg-music.mp3" loop preload="auto"></audio>
 
     <button class="music-ctrl-btn" id="music-toggle" onclick="toggleMusic()">
         <span id="music-icon">🎵</span> Musik: <b id="music-status">OFF</b>
@@ -244,7 +245,7 @@
 
     <script>
         let currentIdx = 0;
-        let isPlaying = false; // Musik mati saat web pertama kali dimuat (Aturan Google Chrome)
+        let isPlaying = false; 
 
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.dot');
