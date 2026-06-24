@@ -276,23 +276,37 @@
             updateSlider();
         }
 
-        // FUNGSI ON / OFF MUSIK LATAR
-        function toggleMusic() {
-            if (!isPlaying) {
-                myMusic.play()
-                    .then(() => {
-                        isPlaying = true;
-                        musicIcon.textContent = "🔊";
-                        musicStatus.textContent = "ON";
-                    })
-                    .catch(error => {
-                        console.log("Gagal memutar musik: ", error);
-                    });
-            } else {
-                myMusic.pause();
-                isPlaying = false;
-                musicIcon.textContent = "🎵";
-                musicStatus.textContent = "OFF";
+// Status musik
+let isPlaying = false;
+
+// Ambil elemen
+const myMusic = document.getElementById('bg-music');
+const musicIcon = document.getElementById('music-icon');
+const musicStatus = document.getElementById('music-status');
+
+// Pastikan musik mengulang
+myMusic.loop = true;
+
+function toggleMusic() {
+    if (isPlaying) {
+        // Matikan musik
+        myMusic.pause();
+        musicIcon.textContent = "🎵";
+        musicStatus.textContent = "OFF";
+        isPlaying = false;
+    } else {
+        // Nyalakan musik
+        myMusic.play()
+            .then(() => {
+                musicIcon.textContent = "🔊";
+                musicStatus.textContent = "ON";
+                isPlaying = true;
+            })
+            .catch(err => {
+                console.error("Gagal memutar musik:", err);
+            });
+    }
+}
             }
         }
     </script>
