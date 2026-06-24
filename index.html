@@ -186,9 +186,6 @@
 </head>
 <body>
 
-    <!-- Nama file audio disederhanakan agar tidak error dibaca browser -->
-    <audio id="bg-music" src="Sou Favela Dance Brazil _ Dance Viral Tiktok Terbaru 2026 #viral #trendtiktok #danceviral #velocity [lKy68rbhGiE].mp3" loop preload="auto"></audio>
-
     <button class="music-ctrl-btn" id="music-toggle" onclick="toggleMusic()">
         <span id="music-icon">🎵</span> Musik: <b id="music-status">OFF</b>
     </button>
@@ -249,9 +246,12 @@
 
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.dot');
-        const myMusic = document.getElementById('bg-music');
         const musicIcon = document.getElementById('music-icon');
         const musicStatus = document.getElementById('music-status');
+
+        // MEMBUAT OBJECT AUDIO BARU LEWAT JAVASCRIPT
+        const myMusic = new Audio('bg-music.mp3');
+        myMusic.loop = true;
 
         function updateSlider() {
             slides.forEach(slide => slide.classList.remove('active'));
@@ -276,55 +276,25 @@
             updateSlider();
         }
 
-// Status musik
-let isPlaying = false;
-
-// Ambil elemen
-const myMusic = document.getElementById('bg-music');
-const musicIcon = document.getElementById('music-icon');
-const musicStatus = document.getElementById('music-status');
-
-// Pastikan musik mengulang
-myMusic.loop = true;
-
-function toggleMusic() {
-    if (isPlaying) {
-           // FUNGSI ON / OFF MUSIK LATAR
-
+        // FUNGSI ON / OFF MUSIK DENGAN DETEKSI ERROR OTOMATIS
         function toggleMusic() {
-
             if (!isPlaying) {
-
                 myMusic.play()
-
                     .then(() => {
-
                         isPlaying = true;
-
                         musicIcon.textContent = "🔊";
-
                         musicStatus.textContent = "ON";
-
                     })
-
                     .catch(error => {
-
-                        console.log("Gagal memutar musik: ", error);
-
+                        // Memunculkan pesan di layar jika browser menolak memutar lagu
+                        alert("Waduh, lagu gagal berputar!\n\nPenyebab paling sering:\n1. Nama file lagu belum diganti menjadi 'bg-music.mp3'\n2. File lagu tidak ditaruh dalam satu folder yang sama dengan file HTML ini.\n\nDetail teknis: " + error.message);
+                        console.log("Error detail:", error);
                     });
-
             } else {
-
                 myMusic.pause();
-
                 isPlaying = false;
-
                 musicIcon.textContent = "🎵";
-
-                musicStatus.textContent = "OFF";  
-            });
-    }
-}
+                musicStatus.textContent = "OFF";
             }
         }
     </script>
