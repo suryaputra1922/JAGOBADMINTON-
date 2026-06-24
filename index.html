@@ -15,6 +15,7 @@
         body {
             color: #fff;
             overflow: hidden;
+            background-color: #111;
         }
 
         /* Container Slide */
@@ -44,9 +45,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-image:text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
- ');
-            
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
         }
 
         /* Animasi Slide Aktif */
@@ -56,7 +55,6 @@
             visibility: visible;
         }
 
-        /* Background per Slide */
         /* Elemen Visual & Animasi Teks */
         h1 {
             font-size: 3.5rem;
@@ -136,6 +134,30 @@
         .prev-btn { left: 30px; }
         .next-btn { right: 30px; }
 
+        /* --- TOMBOL MUSIK --- */
+        .music-ctrl-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid white;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: 0.3s;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .music-ctrl-btn:hover {
+            background: white;
+            color: black;
+        }
+
         /* Indikator Dots */
         .dots-container {
             position: absolute;
@@ -164,61 +186,52 @@
 </head>
 <body>
 
-    <!-- Audio Efek Transisi -->
-    <audio id="slide-sound" src="click.mp3" preload="auto"></audio>
+    <audio id="bg-music" src="musik.mp3" loop preload="auto"></audio>
+
+    <button class="music-ctrl-btn" id="music-toggle" onclick="toggleMusic()">
+        <span id="music-icon">🎵</span> Musik: <b id="music-status">OFF</b>
+    </button>
 
     <div class="slider-container">
-        <!-- Tombol Navigasi -->
         <button class="nav-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
         <button class="nav-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
 
-        <!-- Slide 1: Pembuka -->
         <div class="slide active">
             <h1>Jago Badminton</h1>
             <p>Kuasai teknik dasar bulu tangkis untuk menjadi pemain yang tak terkalahkan. Klik tombol panah untuk mulai belajar!</p>
-             <!-- GAMBAR SAMPUL VIDEO -->
-<p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1oorTNK_qw4?si=wo_dO4IFbKMs67Ft" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</video>
-
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/1oorTNK_qw4?si=wo_dO4IFbKMs67Ft" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
        </div>
 
-        <!-- Slide 2: Grip -->
         <div class="slide">
             <img src="Screenshot_20260621-041326.jpg" alt="Cara memegang raket" class="slide-img">
             <h2>1. Cara Memegang Raket (Grip)</h2>
             <p>Teknik paling awal. Terdiri dari Forehand Grip (seperti bersalaman) dan Backhand Grip (ibu jari menekan rata pada permukaan gagang yang lebar).</p>
         </div>
 
-        <!-- Slide 3: Footwork -->
         <div class="slide">
             <img src="Screenshot_20260622-024534.png" alt="Pergerakan kaki" class="slide-img">
             <h2>2. Pergerakan Kaki (Footwork)</h2>
             <p>Footwork yang lincah mengatur posisi tubuh agar selalu ideal saat memukul kok. Kunci utamanya adalah menjaga keseimbangan dan kelenturan kaki.</p>
         </div>
 
-        <!-- Slide 4: Servis -->
         <div class="slide">
             <img src="Screenshot_20260622-025132.png" alt="Servis badminton" class="slide-img">
             <h2>3. Servis (Service)</h2>
             <p>Pukulan awal untuk memulai permainan. Bisa berupa servis pendek (sering untuk ganda) atau servis panjang melambung tinggi (sering untuk tunggal).</p>
         </div>
 
-        <!-- Slide 5: Smash -->
         <div class="slide">
             <img src="Screenshot_20260622-025715.png" alt="Pukulan smash" class="slide-img">
             <h2>4. Pukulan Smash</h2>
             <p>Pukulan menyerang yang keras, tajam, dan menukik cepat ke area lapangan lawan. Membutuhkan kekuatan pergelangan tangan dan lompatan yang pas.</p>
         </div>
 
-        <!-- Slide 6: Drop Shot -->
         <div class="slide">
             <img src="Screenshot_20260622-025813~2.png" alt="Pukulan drop shot" class="slide-img">
             <h2>5. Pukulan Drop Shot</h2>
             <p>Pukulan tipuan yang meluncur halus melompati net dan jatuh dekat di area depan lawan. Mirip gerakan smash tetapi dilakukan dengan sentuhan lembut.</p>
         </div>
 
-        <!-- Indikator Dots -->
         <div class="dots-container">
             <div class="dot active" onclick="currentSlide(0)"></div>
             <div class="dot" onclick="currentSlide(1)"></div>
@@ -231,22 +244,20 @@
 
     <script>
         let currentIdx = 0;
+        let isPlaying = false; // Musik mati saat web pertama kali dimuat (Aturan Google Chrome)
+
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.dot');
-        const sound = document.getElementById('slide-sound');
+        const myMusic = document.getElementById('bg-music');
+        const musicIcon = document.getElementById('music-icon');
+        const musicStatus = document.getElementById('music-status');
 
         function updateSlider() {
-            // Hapus kelas aktif dari semua slide dan dots
             slides.forEach(slide => slide.classList.remove('active'));
             dots.forEach(dot => dot.classList.remove('active'));
 
-            // Aktifkan slide dan dot saat ini
             slides[currentIdx].classList.add('active');
             dots[currentIdx].classList.add('active');
-
-            // Putar audio efek suara saat slide berganti
-            sound.currentTime = 0; 
-            sound.play().catch(error => console.log("Interaksi user diperlukan untuk memutar audio pertama kali."));
         }
 
         function changeSlide(direction) {
@@ -263,7 +274,26 @@
             currentIdx = index;
             updateSlider();
         }
+
+        // FUNGSI ON / OFF MUSIK LATAR
+        function toggleMusic() {
+            if (!isPlaying) {
+                myMusic.play()
+                    .then(() => {
+                        isPlaying = true;
+                        musicIcon.textContent = "🔊";
+                        musicStatus.textContent = "ON";
+                    })
+                    .catch(error => {
+                        console.log("Gagal memutar musik: ", error);
+                    });
+            } else {
+                myMusic.pause();
+                isPlaying = false;
+                musicIcon.textContent = "🎵";
+                musicStatus.textContent = "OFF";
+            }
+        }
     </script>
 </body>
-                                                                                                                                                                </html>
-                                                                                                                                                                
+</html>
